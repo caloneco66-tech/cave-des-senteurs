@@ -21,7 +21,7 @@ const PRODUCTS = [
     genre: "Pour homme et femme",
     volume: "125 ml",
     nouveaute: true,
-    images: ["img/sakura.jpg"],
+    images: ["IMG/sakura.jpg"],
     emoji: "&#127800;"
   },
   {
