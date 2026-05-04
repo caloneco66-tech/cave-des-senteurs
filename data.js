@@ -21,7 +21,7 @@ const PRODUCTS = [
     genre: "Pour homme et femme",
     volume: "125 ml",
     nouveaute: true,
-    images: ["https://caloneco66-tech.github.io/cave-des-senteurs/img/sakura.jpg"],
+    images: ["https://i.ibb.co/4nQg6Hrw/sakura-jpg.jpg"],
     emoji: "&#127800;"
   },
   {
