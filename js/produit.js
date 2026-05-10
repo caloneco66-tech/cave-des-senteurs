@@ -54,7 +54,7 @@ function initProductPage() {
         </div>
         <div class="product-notes__item">
           <span class="product-notes__label">Cœur</span>
-          <span class="product-notes__value">${produit.notes.cœur}</span>
+          <span class="product-notes__value">${produit.notes.coeur}</span>
         </div>
         <div class="product-notes__item">
           <span class="product-notes__label">Fond</span>
@@ -74,7 +74,10 @@ function initProductPage() {
         <!-- Galerie -->
         <div class="product-gallery">
           <div class="product-gallery__main">
-            <span class="product-gallery__emoji" aria-hidden="true">${produit.emoji}</span>
+            ${produit.images && produit.images[0]
+              ? `<img src="${produit.images[0]}" alt="${produit.nom}" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-lg);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" /><span class="product-gallery__emoji" aria-hidden="true" style="display:none;">${produit.emoji}</span>`
+              : `<span class="product-gallery__emoji" aria-hidden="true">${produit.emoji}</span>`
+            }
             ${produit.nouveaute ? '<span class="product-card__badge product-card__badge--lg">Nouveau</span>' : ""}
           </div>
         </div>

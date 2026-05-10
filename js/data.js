@@ -37,7 +37,7 @@ const PRODUCTS = [
     genre: "Pour femme",
     volume: "50 ml",
     nouveaute: true,
-    images: ["img/goog girl gone bad.jpeg"],
+    images: ["img/gone-girl-2026.jpeg"],
     emoji: "&#127801;"
   },
   {
@@ -54,7 +54,7 @@ const PRODUCTS = [
     genre: "Pour homme",
     volume: "100 ml",
     nouveaute: true,
-    images: ["img/Imagination.jpeg"],
+    images: ["img/imagination-new.jpeg"],
     emoji: "&#128167;"
   },
   {
@@ -71,7 +71,7 @@ const PRODUCTS = [
     genre: "Pour homme et femme",
     volume: "200 ml",
     nouveaute: true,
-    images: ["img/Tobaco honaey.jpeg"],
+    images: ["img/tabaco-new.jpeg"],
     emoji: "&#127855;"
   },
   {
@@ -105,7 +105,7 @@ const PRODUCTS = [
     genre: "Pour homme",
     volume: "125 ml",
     nouveaute: true,
-    images: ["img/porto.jpeg"],
+    images: ["img/ultra-male.jpeg"],
     emoji: "&#128171;"
   },
 
@@ -221,7 +221,7 @@ const PRODUCTS = [
     volume: "10 ml",
     utilisation: "Corps, poignets, cou",
     nouveaute: true,
-    images: ["img/mang1.jpeg"],
+    images: ["img/Gloria.jpeg"],
     emoji: "&#127818;"
   }
 ];
@@ -250,8 +250,8 @@ function getCategorieLabel(cat) {
 }
 
 function getPrixRange(produit) {
-  if (produit.prix <= 10000) return "moins-30";
-  if (produit.prix <= 25000) return "30-60";
-  if (produit.prix <= 40000) return "60-100";
-  return "plus-100";
+  if (produit.prix <= 9999)  return "moins-30";   // Moins de 10 000
+  if (produit.prix <= 19999) return "30-60";       // 10 000 – 20 000
+  if (produit.prix <= 46000) return "60-100";      // 40 000 – 46 000
+  return "plus-100";                               // Plus de 46 000
 }

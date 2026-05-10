@@ -55,7 +55,7 @@ function createProductCard(produit) {
   const imagePrincipale = produit.images && produit.images[0];
 
   const mediaHTML = imagePrincipale
-    ? `<img src="${imagePrincipale}" alt="${produit.nom}" class="product-card__photo" />`
+    ? `<img src="${imagePrincipale}" alt="${produit.nom}" class="product-card__photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" /><span class="product-card__emoji" aria-hidden="true" style="display:none;">${produit.emoji}</span>`
     : `<span class="product-card__emoji" aria-hidden="true">${produit.emoji}</span>`;
 
   return `
