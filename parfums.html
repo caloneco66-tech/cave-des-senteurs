@@ -37,16 +37,26 @@
   <main style="padding-top: var(--header-height);">
 
     <section class="category-intro">
-      <div class="container category-intro__inner">
-        <div class="category-intro__text">
-          <p class="section__eyebrow">Notre collection</p>
-          <h1>Parfums</h1>
-          <p>Des fragrances d&apos;exception soigneusement s&eacute;lectionn&eacute;es pour sublimer votre personnalit&eacute;. Eaux de parfum intenses ou eaux de toilette l&eacute;g&egrave;res, chaque flacon raconte une histoire unique.</p>
-          <a href="catalogue.html?categorie=parfums" class="btn btn--primary">Voir tout le catalogue</a>
-        </div>
-        <div class="category-intro__img" aria-hidden="true">🌸</div>
-      </div>
-    </section>
+  <div class="container category-intro__inner">
+
+    <div class="category-intro__text">
+      <p class="section__eyebrow">Notre collection</p>
+      <h1>Parfums</h1>
+      <p>Des fragrances d&apos;exception soigneusement s&eacute;lectionn&eacute;es...</p>
+      <a href="catalogue.html?categorie=parfums" class="btn btn--primary">Voir tout le catalogue</a>
+    </div>
+
+    <div class="category-intro__img" style="padding:0; overflow:hidden;">
+      <img
+        src="img/kilian.jpeg"
+        alt="Collection Parfums"
+        style="width:100%; height:100%; object-fit:cover; display:block;"
+        onerror="this.style.display='none'; this.parentElement.textContent='🌸'; this.parentElement.style.padding='2rem';"
+      />
+    </div>
+
+  </div>
+</section>
 
     <section class="section">
       <div class="container">

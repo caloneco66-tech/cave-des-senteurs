@@ -33,26 +33,17 @@
     </div>
   </header>
   <main>
-    <section class="hero">
-      <div class="hero__bg">
-        <img src="hero.jpg" alt="">
-      </div>      
-      
-      <div class="hero__overlay"></div>
-      <div class="container hero__content">
-        <p class="hero__eyebrow">Collection Exclusive</p>
-        <h1 class="hero__title">L&rsquo;Art du Parfum<br /><em>&agrave; votre port&eacute;e</em></h1>
-        <p class="hero__subtitle">D&eacute;couvrez des fragrances d&rsquo;exception, des diffuseurs &eacute;l&eacute;gants et des huiles pr&eacute;cieuses, s&eacute;lectionn&eacute;s avec soin pour sublimer votre quotidien.</p>
-        <div class="hero__cta">
-          <a href="catalogue.html" class="btn btn--primary">D&eacute;couvrir la collection</a>
-          <a href="contact.html" class="btn btn--outline">Nous contacter</a>
-        </div>
-      </div>
-      <div class="hero__scroll">
-        <span>D&eacute;filer</span>
-        <div class="hero__scroll-line"></div>
-      </div>
-    </section>
+    <section class="hero" style="background: linear-gradient(135deg, #4E1220 0%, #6B1A2A 55%, #9B3050 100%); min-height: 100vh;">
+  <div class="container hero__content">
+    <p class="hero__eyebrow">Collection Exclusive</p>
+    <h1 class="hero__title">L&rsquo;Art du Parfum<br /><em>&agrave; votre port&eacute;e</em></h1>
+    <p class="hero__subtitle">D&eacute;couvrez des fragrances d&rsquo;exception, des diffuseurs &eacute;l&eacute;gants et des huiles pr&eacute;cieuses, s&eacute;lectionn&eacute;s avec soin pour sublimer votre quotidien.</p>
+    <div class="hero__cta">
+      <a href="catalogue.html" class="btn btn--primary">D&eacute;couvrir la collection</a>
+      <a href="contact.html" class="btn btn--outline">Nous contacter</a>
+    </div>
+  </div>
+</section>
     <section class="categories section">
       <div class="container">
         <div class="section__header">
@@ -61,37 +52,41 @@
           <p class="section__subtitle">Trois univers olfactifs pour tous vos d&eacute;sirs de senteurs</p>
         </div>
         <div class="categories__grid">
-          <a href="parfums.html" class="category-card">
-            <div class="category-card__img category-card__img--parfums">
-              <span class="category-card__emoji">&#127800;</span>
-            </div>
-            <div class="category-card__body">
-              <h3 class="category-card__title">Parfums</h3>
-              <p class="category-card__desc">Eaux de parfum et eaux de toilette aux fragrances envo&ucirc;tantes</p>
-              <span class="category-card__link">Voir la collection &rarr;</span>
-            </div>
-          </a>
-          <a href="diffuseurs.html" class="category-card category-card--featured">
-            <div class="category-card__img category-card__img--diffuseurs">
-              <span class="category-card__emoji">&#128367;</span>
-            </div>
-            <div class="category-card__body">
-              <h3 class="category-card__title">Diffuseurs</h3>
-              <p class="category-card__desc">Diffuseurs &agrave; roseaux et &eacute;lectriques pour parfumer votre int&eacute;rieur</p>
-              <span class="category-card__link">Voir la collection &rarr;</span>
-            </div>
-          </a>
-          <a href="huiles-parfumees.html" class="category-card">
-            <div class="category-card__img category-card__img--huiles">
-              <span class="category-card__emoji">&#10024;</span>
-            </div>
-            <div class="category-card__body">
-              <h3 class="category-card__title">Huiles Parfum&eacute;es</h3>
-              <p class="category-card__desc">Huiles pr&eacute;cieuses pour le corps, le bain et la maison</p>
-              <span class="category-card__link">Voir la collection &rarr;</span>
-            </div>
-          </a>
-        </div>
+
+  <a href="parfums.html" class="category-card">
+    <div class="category-card__img category-card__img--parfums">
+      <img src="img/parfums.jpeg" alt="Parfums" class="category-card__photo" />
+    </div>
+    <div class="category-card__body">
+      <h3 class="category-card__title">Parfums</h3>
+      <p class="category-card__desc">Eaux de parfum et eaux de toilette aux fragrances envo&ucirc;tantes</p>
+      <span class="category-card__link">Voir la collection &rarr;</span>
+    </div>
+  </a>
+
+  <a href="diffuseurs.html" class="category-card category-card--featured">
+    <div class="category-card__img category-card__img--diffuseurs">
+      <img src="img/diffiseures.jpeg" alt="Diffuseurs" class="category-card__photo" />
+    </div>
+    <div class="category-card__body">
+      <h3 class="category-card__title">Diffuseurs</h3>
+      <p class="category-card__desc">Diffuseurs &agrave; roseaux et &eacute;lectriques pour parfumer votre int&eacute;rieur</p>
+      <span class="category-card__link">Voir la collection &rarr;</span>
+    </div>
+  </a>
+
+  <a href="huiles-parfumees.html" class="category-card">
+    <div class="category-card__img category-card__img--huiles">
+      <img src="img/huile.jpeg" alt="Huiles Parfumées" class="category-card__photo" />
+    </div>
+    <div class="category-card__body">
+      <h3 class="category-card__title">Huiles Parfum&eacute;es</h3>
+      <p class="category-card__desc">Huiles pr&eacute;cieuses pour le corps, le bain et la maison</p>
+      <span class="category-card__link">Voir la collection &rarr;</span>
+    </div>
+  </a>
+
+</div>
       </div>
     </section>
     <section class="nouveautes section section--beige">
@@ -120,19 +115,28 @@
       </div>
     </section>
     <section class="about-preview section">
-      <div class="container about-preview__inner">
-        <div class="about-preview__img">
-          <div class="about-preview__img-placeholder"><span>&#127801;</span></div>
-        </div>
-        <div class="about-preview__content">
-          <p class="section__eyebrow">Notre histoire</p>
-          <h2 class="section__title">Une passion pour les senteurs</h2>
-          <p>La Cave des Senteurs est n&eacute;e d&rsquo;un amour profond pour l&rsquo;art de la parfumerie. Nous s&eacute;lectionnons chaque fragrance avec soin, en privil&eacute;giant la qualit&eacute;, l&rsquo;authenticit&eacute; et l&rsquo;&eacute;motion olfactive.</p>
-          <p>Chaque produit que nous proposons raconte une histoire, &eacute;voque un souvenir, transporte vers un ailleurs.</p>
-          <a href="a-propos.html" class="btn btn--secondary">En savoir plus</a>
-        </div>
-      </div>
-    </section>
+  <div class="container about-preview__inner">
+
+    <div class="about-preview__img">
+      <img
+        src="img/sakura.jpg"
+        alt="La Cave des Senteurs"
+        style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:var(--radius-xl); box-shadow:var(--shadow-lg); display:block;"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="about-preview__img-placeholder" style="display:none;"><span>🌹</span></div>
+    </div>
+
+    <div class="about-preview__content">
+      <p class="section__eyebrow">Notre histoire</p>
+      <h2 class="section__title">Une passion pour les senteurs</h2>
+      <p>La Cave des Senteurs est n&eacute;e d&rsquo;un amour profond pour l&rsquo;art de la parfumerie...</p>
+      <p>Chaque produit que nous proposons raconte une histoire...</p>
+      <a href="a-propos.html" class="btn btn--secondary">En savoir plus</a>
+    </div>
+
+  </div>
+</section>
   </main>
   <footer class="footer">
     <div class="container footer__inner">

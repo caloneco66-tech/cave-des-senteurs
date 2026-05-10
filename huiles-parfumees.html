@@ -36,17 +36,24 @@
 
   <main style="padding-top: var(--header-height);">
 
-    <section class="category-intro">
-      <div class="container category-intro__inner">
-        <div class="category-intro__text">
-          <p class="section__eyebrow">Notre collection</p>
-          <h1>Huiles Parfum&eacute;es</h1>
-          <p>Des huiles pr&eacute;cieuses pour le corps, le bain et la maison. Chaque goutte est une invitation &agrave; la douceur et au bien-&ecirc;tre. Nourrissantes, soyeuses et d&eacute;licatement parfum&eacute;es.</p>
-          <a href="catalogue.html?categorie=huiles-parfumees" class="btn btn--primary">Voir tout le catalogue</a>
-        </div>
-        <div class="category-intro__img" aria-hidden="true">✨</div>
-      </div>
-    </section>
+   <section class="category-intro">
+  <div class="container category-intro__inner">
+    <div class="category-intro__text">
+      <p class="section__eyebrow">Notre collection</p>
+      <h1>Huiles Parfumées</h1>
+      <p>Des huiles précieuses pour le corps, le bain et la maison. Nourrissantes, soyeuses et délicatement parfumées.</p>
+      <a href="catalogue.html?categorie=huiles-parfumees" class="btn btn--primary">Voir tout le catalogue</a>
+    </div>
+    <div class="category-intro__img" style="padding:0; overflow:hidden;">
+      <img
+        src="img/chanel bleu.jpeg"
+        alt="parfums"
+        style="width:100%; height:100%; object-fit:cover; display:block;"
+        onerror="this.style.display='none'; this.parentElement.innerHTML='✨'; this.parentElement.style.cssText+='display:flex;align-items:center;justify-content:center;font-size:6rem;padding:2rem;';"
+      />
+    </div>
+  </div>
+</section> 
 
     <section class="section">
       <div class="container">
