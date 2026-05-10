@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Catalogue &ndash; La Cave des Senteurs</title>
-  <meta name="description" content="Parcourez notre catalogue complet de parfums, diffuseurs et huiles parfumées." />
+  <title>Catalogue Parfums &ndash; La Cave des Senteurs</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta name="description" content="Catalogue complet de parfums, diffuseurs et huiles parfumees. Filtrez par categorie et budget. Commandez via WhatsApp." />
+  <meta name="keywords" content="catalogue parfum, acheter parfum, diffuseur roseaux, huile parfumee, parfum pas cher" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://caloneco66-tech.github.io/Cave-des-Senteurs/catalogue.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Catalogue – La Cave des Senteurs" />
+  <meta property="og:description" content="Parcourez notre catalogue complet de parfums, diffuseurs et huiles parfumees." />
+  <meta property="og:url" content="https://caloneco66-tech.github.io/Cave-des-Senteurs/catalogue.html" />
+  <meta property="og:image" content="https://caloneco66-tech.github.io/Cave-des-Senteurs/img/hero.jpg" />
+  <meta property="og:site_name" content="La Cave des Senteurs" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -252,6 +262,7 @@
           <li><a href="huiles-parfumees.html" class="nav__link">Huiles</a></li>
           <li><a href="a-propos.html"         class="nav__link">&Agrave; propos</a></li>
           <li><a href="contact.html"          class="nav__link">Contact</a></li>
+          <li><a href="blog.html"             class="nav__link">Blog</a></li>
         </ul>
       </nav>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
@@ -303,6 +314,9 @@
           </button>
           <button class="cat-pill" data-filter="huiles-parfumees">
             ✨ Huiles <span class="cat-pill__count" id="count-huiles">0</span>
+          </button>
+          <button class="cat-pill cat-pill--gold" data-filter="bestseller">
+            ⭐ Best-sellers
           </button>
         </div>
 
@@ -405,6 +419,7 @@
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
   <script src="js/catalogue.js"></script>
+  <script src="js/chatbot.js"></script>
 
   <script>
   // ── Script catalogue amélioré ──
@@ -426,16 +441,32 @@
       btn.addEventListener('click', () => {
         document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        // Filtre best-seller spécial
+        if (filter === 'bestseller') {
+          const grid = document.getElementById('catalogue-grid');
+          if (grid) {
+            const items = PRODUCTS.filter(p => p.bestSeller);
+            grid.innerHTML = items.map(p => createProductCard(p)).join('');
+            const countEl = document.getElementById('product-count');
+            if (countEl) countEl.textContent = items.length;
+          }
+          const tag = document.getElementById('active-filter-tag');
+          if (tag) tag.textContent = '⭐ Best-sellers';
+          return;
+        }
+
         // Synchronise avec le catalogue.js s'il utilise data-filter
         const filterBtns = document.querySelectorAll('.filter-btn[data-filter]');
         filterBtns.forEach(fb => {
-          fb.classList.toggle('active', fb.dataset.filter === btn.dataset.filter);
-          if (fb.dataset.filter === btn.dataset.filter) fb.click();
+          fb.classList.toggle('active', fb.dataset.filter === filter);
+          if (fb.dataset.filter === filter) fb.click();
         });
         // Tag actif
         const labels = { tous: 'Tous les produits', parfums: 'Parfums', diffuseurs: 'Diffuseurs', 'huiles-parfumees': 'Huiles parfumées' };
         const tag = document.getElementById('active-filter-tag');
-        if (tag) tag.textContent = labels[btn.dataset.filter] || 'Tous les produits';
+        if (tag) tag.textContent = labels[filter] || 'Tous les produits';
       });
     });
 

@@ -86,7 +86,7 @@ function initProductPage() {
         <div class="product-info">
           <p class="product-info__cat">${getCategorieLabel(produit.categorie)}</p>
           <h1 class="product-info__title">${produit.nom}</h1>
-          <p class="product-info__prix">${produit.prix.toLocaleString()} ${produit.devise || 'FCFA'}</p>
+          <p class="product-info__prix">${produit.prix > 0 ? produit.prix.toLocaleString() + ' ' + (produit.devise || 'FCFA') : 'Prix sur demande'}</p>
           <p class="product-info__desc">${produit.description}</p>
 
           ${infoExtra.length ? `

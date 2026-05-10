@@ -20,6 +20,8 @@ const PRODUCTS = [
     genre: "Pour homme et femme",
     volume: "125 ml",
     nouveaute: true,
+    bestSeller: false,
+    stockLimite: false,
     images: ["img/sakura.jpg"],
     emoji: "&#127800;"
   },
@@ -37,6 +39,8 @@ const PRODUCTS = [
     genre: "Pour femme",
     volume: "50 ml",
     nouveaute: true,
+    bestSeller: true,
+    stockLimite: true,
     images: ["img/gone-girl-2026.jpeg"],
     emoji: "&#127801;"
   },
@@ -54,6 +58,8 @@ const PRODUCTS = [
     genre: "Pour homme",
     volume: "100 ml",
     nouveaute: true,
+    bestSeller: true,
+    stockLimite: false,
     images: ["img/imagination-new.jpeg"],
     emoji: "&#128167;"
   },
@@ -71,6 +77,8 @@ const PRODUCTS = [
     genre: "Pour homme et femme",
     volume: "200 ml",
     nouveaute: true,
+    bestSeller: true,
+    stockLimite: true,
     images: ["img/tabaco-new.jpeg"],
     emoji: "&#127855;"
   },
@@ -88,6 +96,8 @@ const PRODUCTS = [
     genre: "Pour femme",
     volume: "50 ml",
     nouveaute: true,
+    bestSeller: false,
+    stockLimite: true,
     images: ["img/parfums.jpeg"],
     emoji: "&#127801;"
   },
@@ -105,6 +115,8 @@ const PRODUCTS = [
     genre: "Pour homme",
     volume: "125 ml",
     nouveaute: true,
+    bestSeller: true,
+    stockLimite: false,
     images: ["img/ultra-male.jpeg"],
     emoji: "&#128171;"
   },
@@ -223,17 +235,78 @@ const PRODUCTS = [
     nouveaute: true,
     images: ["img/Gloria.jpeg"],
     emoji: "&#127818;"
+  },
+  // ── NOUVEAUX PARFUMS ─────────────────────────────────────
+  {
+    id: 15,
+    nom: "Hibiscus MahaJad",
+    marque: "Maison Crivelli",
+    categorie: "parfums",
+    prix: 0,
+    devise: "FCFA",
+    description: "Hibiscus MahaJad de Maison Crivelli est un extrait de parfum d'une intensite rare. L'hibiscus rouge eclate comme une fleur tropicale en plein soleil, marie a des notes de fruits rouges juteux et d'une base boisee et musquee. Une fragrance vivante, solaire et profondement envoûtante.",
+    notes: { tete: "Hibiscus, Fruits rouges", coeur: "Rose, Jasmin", fond: "Musc, Bois de santal" },
+    longevite: "8 heures",
+    sillage: "Fort",
+    genre: "Pour homme et femme",
+    volume: "50 ml",
+    nouveaute: true,
+    bestSeller: false,
+    stockLimite: true,
+    images: ["img/hibiscus-mahajad.jpeg"],
+    emoji: "🌺"
+  },
+  {
+    id: 16,
+    nom: "La Vie est Belle L'Extrait",
+    marque: "Lancome",
+    categorie: "parfums",
+    prix: 0,
+    devise: "FCFA",
+    description: "La Vie est Belle L'Extrait de Lancome est la version la plus intense et la plus luxueuse de l'iconique La Vie est Belle. Un bouquet de praline rose, iris et jasmin sambac d'une richesse incomparable. Sensuel, gourmand et inoubliable — une declaration d'amour a la vie.",
+    notes: { tete: "Praline rose, Bergamote", coeur: "Iris, Jasmin sambac, Rose", fond: "Praline, Vanille, Patchouli" },
+    longevite: "10 heures",
+    sillage: "Fort",
+    genre: "Pour femme",
+    volume: "50 ml",
+    nouveaute: true,
+    bestSeller: true,
+    stockLimite: false,
+    images: ["img/la-vie-est-belle.jpeg"],
+    emoji: "&#10024;"
+  },
+  {
+    id: 17,
+    nom: "Tuxedo Sharp Patchouli",
+    marque: "Yves Saint Laurent",
+    categorie: "parfums",
+    prix: 0,
+    devise: "FCFA",
+    description: "Tuxedo Sharp Patchouli de Yves Saint Laurent est une fragrance boisee et aromatique d'une elegance absolue. Le patchouli tranchant s'allie a des notes de cuir, d'epices et de bois precieux pour creer un sillage masculin et sophistique. Pour l'homme qui ose.",
+    notes: { tete: "Epices, Bergamote", coeur: "Patchouli, Cuir", fond: "Bois de santal, Vetiver, Ambre" },
+    longevite: "9 heures",
+    sillage: "Fort",
+    genre: "Pour homme",
+    volume: "100 ml",
+    nouveaute: true,
+    bestSeller: false,
+    stockLimite: false,
+    images: ["img/tuxedo-ysl.jpeg"],
+    emoji: "&#128171;"
   }
 ];
 
 // Lien WhatsApp avec message pre-rempli
 function getWhatsAppLink(produit) {
   const devise = produit.devise || "FCFA";
+  const prixText = produit.prix > 0
+    ? "Prix : " + produit.prix.toLocaleString() + " " + devise + "\n"
+    : "Prix : A confirmer\n";
   const msg = encodeURIComponent(
     "Bonjour, je souhaite commander :\n\n" +
     "Produit : *" + produit.nom + "*\n" +
     (produit.marque ? "Marque : " + produit.marque + "\n" : "") +
-    "Prix : " + produit.prix.toLocaleString() + " " + devise + "\n" +
+    prixText +
     (produit.volume ? "Volume : " + produit.volume + "\n" : "") +
     "\nMerci de me confirmer la disponibilite."
   );

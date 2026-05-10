@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Parfumerie - Conseils &amp; Tendances | La Cave des Senteurs</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta name="description" content="Conseils parfumerie, tendances olfactives et guides d'achat. Decouvrez nos articles pour choisir le parfum parfait." />
+  <meta name="keywords" content="blog parfum, choisir parfum, familles olfactives, huile parfumee, diffuseur roseaux" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://caloneco66-tech.github.io/Cave-des-Senteurs/blog.html" />
+  <meta property="og:type" content="blog" />
+  <meta property="og:title" content="Blog Parfumerie | La Cave des Senteurs" />
+  <meta property="og:description" content="Conseils et tendances parfumerie par La Cave des Senteurs." />
+  <meta property="og:url" content="https://caloneco66-tech.github.io/Cave-des-Senteurs/blog.html" />
+  <meta property="og:site_name" content="La Cave des Senteurs" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Blog Hero ── */
+    .blog-hero {
+      background: linear-gradient(135deg, var(--color-bordeaux, #6b1a2a) 0%, #3d0e18 100%);
+      padding: calc(var(--header-height, 80px) + 4rem) 0 4rem;
+      text-align: center;
+      color: #fff;
+    }
+    .blog-hero__eyebrow {
+      font-family: var(--font-body, 'Lato', sans-serif);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 1rem;
+    }
+    .blog-hero__title {
+      font-family: var(--font-heading, 'Playfair Display', serif);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+    .blog-hero__subtitle {
+      font-family: var(--font-body, 'Lato', sans-serif);
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── Blog Section ── */
+    .blog-section {
+      padding: 5rem 0 6rem;
+      background: #faf8f5;
+    }
+
+    /* ── Blog Grid ── */
+    .blog__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    @media (max-width: 1024px) {
+      .blog__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .blog__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── Blog Card ── */
+    .blog-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(107, 26, 42, 0.07);
+      border-top: 4px solid var(--color-bordeaux, #6b1a2a);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba(107, 26, 42, 0.15);
+    }
+    .blog-card__icon {
+      width: 100%;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      background: linear-gradient(135deg, #fdf0f2 0%, #f9e8ec 100%);
+    }
+    .blog-card__body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .blog-card__category {
+      display: inline-block;
+      font-family: var(--font-body, 'Lato', sans-serif);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-bordeaux, #6b1a2a);
+      background: rgba(107, 26, 42, 0.08);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      margin-bottom: 0.9rem;
+      align-self: flex-start;
+    }
+    .blog-card__title {
+      font-family: var(--font-heading, 'Playfair Display', serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.75rem;
+      line-height: 1.35;
+    }
+    .blog-card__excerpt {
+      font-family: var(--font-body, 'Lato', sans-serif);
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.25rem;
+    }
+    .blog-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .blog-card__readtime {
+      font-family: var(--font-body, 'Lato', sans-serif);
+      font-size: 0.78rem;
+      color: #999;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .blog-card__readtime svg {
+      flex-shrink: 0;
+    }
+    .blog-card__btn {
+      display: inline-block;
+      font-family: var(--font-body, 'Lato', sans-serif);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--color-bordeaux, #6b1a2a);
+      border: 1.5px solid var(--color-bordeaux, #6b1a2a);
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+    }
+    .blog-card__btn:hover {
+      background: var(--color-bordeaux, #6b1a2a);
+      color: #fff;
+    }
+
+    /* ── Newsletter CTA ── */
+    .blog-newsletter {
+      background: linear-gradient(135deg, var(--color-bordeaux, #6b1a2a) 0%, #3d0e18 100%);
+      padding: 4rem 0;
+      text-align: center;
+      color: #fff;
+    }
+    .blog-newsletter__title {
+      font-family: var(--font-heading, 'Playfair Display', serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .blog-newsletter__subtitle {
+      font-family: var(--font-body, 'Lato', sans-serif);
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 2rem;
+    }
+    .blog-newsletter__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #fff;
+      color: var(--color-bordeaux, #6b1a2a);
+      font-family: var(--font-body, 'Lato', sans-serif);
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    .blog-newsletter__cta:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header header--scrolled" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img src="img/logo.jpg" alt="La Cave des Senteurs" class="logo__img" />
+      </a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Accueil</a></li>
+          <li><a href="catalogue.html" class="nav__link">Catalogue</a></li>
+          <li><a href="parfums.html" class="nav__link">Parfums</a></li>
+          <li><a href="diffuseurs.html" class="nav__link">Diffuseurs</a></li>
+          <li><a href="huiles-parfumees.html" class="nav__link">Huiles</a></li>
+          <li><a href="a-propos.html" class="nav__link">&Agrave; propos</a></li>
+          <li><a href="contact.html" class="nav__link">Contact</a></li>
+          <li><a href="blog.html" class="nav__link active">Blog</a></li>
+        </ul>
+      </nav>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══ HERO ══ -->
+    <section class="blog-hero">
+      <div class="container">
+        <p class="blog-hero__eyebrow">La Cave des Senteurs</p>
+        <h1 class="blog-hero__title">Notre Blog</h1>
+        <p class="blog-hero__subtitle">Conseils, tendances et secrets de la parfumerie</p>
+      </div>
+    </section>
+
+    <!-- ══ ARTICLES ══ -->
+    <section class="blog-section">
+      <div class="container">
+        <div class="section__header">
+          <p class="section__eyebrow">Nos articles</p>
+          <h2 class="section__title">Explorez notre univers</h2>
+          <p class="section__subtitle">Des guides pratiques pour mieux vivre la parfumerie au quotidien</p>
+        </div>
+
+        <div class="blog__grid">
+
+          <!-- Article 1 -->
+          <article class="blog-card">
+            <div class="blog-card__icon" aria-hidden="true">🌸</div>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Guide d&rsquo;achat</span>
+              <h2 class="blog-card__title">Comment choisir son parfum&nbsp;?</h2>
+              <p class="blog-card__excerpt">
+                Choisir un parfum, c&rsquo;est avant tout une affaire de personnalit&eacute; et d&rsquo;&eacute;motions. Entre les notes de t&ecirc;te, de c&oelig;ur et de fond, chaque fragrance raconte une histoire unique. D&eacute;couvrez nos conseils pour trouver le parfum qui vous ressemble vraiment.
+              </p>
+              <div class="blog-card__footer">
+                <span class="blog-card__readtime">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  5 min de lecture
+                </span>
+                <a href="#" class="blog-card__btn">Lire l&rsquo;article</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="blog-card">
+            <div class="blog-card__icon" aria-hidden="true">🌿</div>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Olfaction</span>
+              <h2 class="blog-card__title">Les familles olfactives expliqu&eacute;es</h2>
+              <p class="blog-card__excerpt">
+                Florale, orientale, fra&icirc;che ou gourmande &mdash; les familles olfactives structurent tout l&rsquo;univers de la parfumerie. Comprendre ces cat&eacute;gories vous aidera &agrave; affiner vos pr&eacute;f&eacute;rences et &agrave; explorer de nouveaux horizons olfactifs avec confiance.
+              </p>
+              <div class="blog-card__footer">
+                <span class="blog-card__readtime">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  7 min de lecture
+                </span>
+                <a href="#" class="blog-card__btn">Lire l&rsquo;article</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="blog-card">
+            <div class="blog-card__icon" aria-hidden="true">✨</div>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Huiles parfum&eacute;es</span>
+              <h2 class="blog-card__title">Pourquoi les huiles parfum&eacute;es durent plus longtemps&nbsp;?</h2>
+              <p class="blog-card__excerpt">
+                Contrairement aux sprays, les huiles parfum&eacute;es s&rsquo;int&egrave;grent directement &agrave; la peau et lib&egrave;rent leurs senteurs progressivement tout au long de la journ&eacute;e. Nous vous expliquons la science derri&egrave;re cette longue tenue et comment en tirer le meilleur parti.
+              </p>
+              <div class="blog-card__footer">
+                <span class="blog-card__readtime">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  4 min de lecture
+                </span>
+                <a href="#" class="blog-card__btn">Lire l&rsquo;article</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 4 -->
+          <article class="blog-card">
+            <div class="blog-card__icon" aria-hidden="true">🕯️</div>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Diffuseurs</span>
+              <h2 class="blog-card__title">Diffuseurs &agrave; roseaux&nbsp;: comment bien les utiliser&nbsp;?</h2>
+              <p class="blog-card__excerpt">
+                Un diffuseur &agrave; roseaux bien plac&eacute; peut transformer l&rsquo;atmosph&egrave;re de toute une pi&egrave;ce. De l&rsquo;orientation des b&acirc;tonnets au choix de l&rsquo;emplacement id&eacute;al, suivez nos astuces pour profiter d&rsquo;un parfum d&rsquo;ambiance constant et &eacute;quilibr&eacute;.
+              </p>
+              <div class="blog-card__footer">
+                <span class="blog-card__readtime">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  6 min de lecture
+                </span>
+                <a href="#" class="blog-card__btn">Lire l&rsquo;article</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ NEWSLETTER / CTA WHATSAPP ══ -->
+    <section class="blog-newsletter">
+      <div class="container">
+        <h2 class="blog-newsletter__title">Une question sur un produit&nbsp;?</h2>
+        <p class="blog-newsletter__subtitle">Nos conseillers sont disponibles sur WhatsApp pour vous guider dans vos choix olfactifs.</p>
+        <a href="https://wa.me/22898879988?text=Bonjour%2C%20j%27ai%20lu%20votre%20blog%20et%20j%27ai%20une%20question%20sur%20vos%20produits." class="blog-newsletter__cta" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Nous contacter sur WhatsApp
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="logo logo--light">
+          <img src="img/logo.jpg" alt="La Cave des Senteurs" class="logo__img logo__img--footer" />
+        </a>
+        <p class="footer__tagline">L&rsquo;art du parfum &agrave; votre port&eacute;e</p>
+      </div>
+      <div class="footer__nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="a-propos.html">&Agrave; propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer__nav">
+        <h4>Cat&eacute;gories</h4>
+        <ul>
+          <li><a href="parfums.html">Parfums</a></li>
+          <li><a href="diffuseurs.html">Diffuseurs</a></li>
+          <li><a href="huiles-parfumees.html">Huiles Parfum&eacute;es</a></li>
+        </ul>
+      </div>
+      <div class="footer__contact">
+        <h4>Commander</h4>
+        <a href="https://wa.me/22898879988" class="footer__whatsapp" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <p class="footer__hours">Disponible 7j/7<br />9h &ndash; 20h</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>&copy; 2026 La Cave des Senteurs. Tous droits r&eacute;serv&eacute;s.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOUTON WHATSAPP FLOTTANT -->
+  <a href="https://wa.me/22898879988?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20vos%20produits." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Commander via WhatsApp">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span>Commander</span>
+  </a>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
+
+</body>
+</html>
