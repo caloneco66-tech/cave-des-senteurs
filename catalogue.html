@@ -322,6 +322,25 @@
 
         <!-- Selects -->
         <div class="catalogue-bar__selects">
+          <select id="filter-marque" class="bar-select" aria-label="Filtrer par marque">
+            <option value="tous">Toutes les marques</option>
+            <option value="Christian Dior">Christian Dior</option>
+            <option value="By Kilian">By Kilian</option>
+            <option value="Louis Vuitton">Louis Vuitton</option>
+            <option value="Guerlain">Guerlain</option>
+            <option value="Givenchy">Givenchy</option>
+            <option value="Jean Paul Gaultier">Jean Paul Gaultier</option>
+            <option value="Maison Crivelli">Maison Crivelli</option>
+            <option value="Lancome">Lancome</option>
+            <option value="Yves Saint Laurent">Yves Saint Laurent</option>
+            <option value="Kayali">Kayali</option>
+            <option value="Tiziana Terenzi">Tiziana Terenzi</option>
+            <option value="Paco Rabanne">Paco Rabanne</option>
+            <option value="Maison Francis Kurkdjian">Maison Francis Kurkdjian</option>
+            <option value="Loris">Loris</option>
+            <option value="Era by Gandour">Era by Gandour</option>
+            <option value="Gloria Perfume">Gloria Perfume</option>
+          </select>
           <select id="filter-prix" class="bar-select" aria-label="Filtrer par prix">
             <option value="tous">Tous les prix</option>
             <option value="moins-30">Moins de 10 000 FCFA</option>
@@ -476,10 +495,70 @@
       resetBtn.addEventListener('click', () => {
         document.getElementById('search-input').value = '';
         document.getElementById('filter-prix').value  = 'tous';
+        document.getElementById('filter-marque').value = 'tous';
         document.getElementById('sort-select').value  = 'default';
         document.querySelector('.cat-pill[data-filter="tous"]').click();
       });
     }
+
+    // Filtre marque
+    document.getElementById('filter-marque').addEventListener('change', function() {
+      applyAllFilters();
+    });
+
+    // Fonction centrale de filtrage
+    function applyAllFilters() {
+      const marque = document.getElementById('filter-marque').value;
+      const prix = document.getElementById('filter-prix').value;
+      const sort = document.getElementById('sort-select').value;
+      const search = document.getElementById('search-input') ? document.getElementById('search-input').value.toLowerCase() : '';
+      const catPill = document.querySelector('.cat-pill.active');
+      const cat = catPill ? catPill.dataset.filter : 'tous';
+
+      let items = PRODUCTS.slice();
+
+      // Filtre categorie
+      if (cat !== 'tous' && cat !== 'bestseller') {
+        items = items.filter(p => p.categorie === cat);
+      } else if (cat === 'bestseller') {
+        items = items.filter(p => p.bestSeller);
+      }
+
+      // Filtre marque
+      if (marque !== 'tous') {
+        items = items.filter(p => p.marque === marque);
+      }
+
+      // Filtre prix
+      if (prix !== 'tous') {
+        items = items.filter(p => getPrixRange(p) === prix);
+      }
+
+      // Recherche
+      if (search) {
+        items = items.filter(p =>
+          p.nom.toLowerCase().includes(search) ||
+          (p.marque && p.marque.toLowerCase().includes(search)) ||
+          p.description.toLowerCase().includes(search)
+        );
+      }
+
+      // Tri
+      if (sort === 'prix-asc') items.sort((a, b) => a.prix - b.prix);
+      else if (sort === 'prix-desc') items.sort((a, b) => b.prix - a.prix);
+      else if (sort === 'nom') items.sort((a, b) => a.nom.localeCompare(b.nom));
+
+      const grid = document.getElementById('catalogue-grid');
+      if (grid) {
+        grid.innerHTML = items.map(p => createProductCard(p)).join('');
+        const countEl = document.getElementById('product-count');
+        if (countEl) countEl.textContent = items.length;
+      }
+    }
+
+    // Appliquer aussi sur prix et tri
+    document.getElementById('filter-prix').addEventListener('change', applyAllFilters);
+    document.getElementById('sort-select').addEventListener('change', applyAllFilters);
 
     // Observer pour afficher l'état vide
     const grid  = document.getElementById('catalogue-grid');

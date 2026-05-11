@@ -2341,3 +2341,19 @@ img.chatbot-msg__avatar {
 .temoignages__dot:hover {
   background: var(--color-bordeaux-light);
 }
+
+
+/* Force fond bordeaux sur le hero */
+.hero:has(.hero__bg),
+.hero {
+  background: linear-gradient(135deg, var(--color-bordeaux-dark) 0%, var(--color-bordeaux) 35%, #8B2A3E 60%, #5A1525 100%) !important;
+}
+.hero:has(.hero__bg)::before { display: none; }
+
+
+/* ── Image complete dans les cartes produit ── */
+.product-card__photo {
+  object-fit: contain !important;
+  background: var(--color-beige) !important;
+  padding: 8px !important;
+}

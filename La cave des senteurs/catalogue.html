@@ -1,0 +1,577 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catalogue Parfums &ndash; La Cave des Senteurs</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta name="description" content="Catalogue complet de parfums, diffuseurs et huiles parfumees. Filtrez par categorie et budget. Commandez via WhatsApp." />
+  <meta name="keywords" content="catalogue parfum, acheter parfum, diffuseur roseaux, huile parfumee, parfum pas cher" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://caloneco66-tech.github.io/Cave-des-Senteurs/catalogue.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Catalogue – La Cave des Senteurs" />
+  <meta property="og:description" content="Parcourez notre catalogue complet de parfums, diffuseurs et huiles parfumees." />
+  <meta property="og:url" content="https://caloneco66-tech.github.io/Cave-des-Senteurs/catalogue.html" />
+  <meta property="og:image" content="https://caloneco66-tech.github.io/Cave-des-Senteurs/img/hero.jpg" />
+  <meta property="og:site_name" content="La Cave des Senteurs" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── PAGE HERO CATALOGUE ── */
+    .catalogue-hero {
+      padding-top: calc(var(--header-height) + var(--space-12));
+      padding-bottom: var(--space-10);
+      background: linear-gradient(135deg, var(--color-bordeaux-dark) 0%, var(--color-bordeaux) 55%, #9B3050 100%);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .catalogue-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 60%, rgba(232,180,184,0.18) 0%, transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(245,237,224,0.10) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .catalogue-hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin-inline: auto;
+    }
+    .catalogue-hero__eyebrow {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-rose-light);
+      margin-bottom: var(--space-3);
+    }
+    .catalogue-hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--color-blanc-pur);
+      margin-bottom: var(--space-3);
+      text-shadow: 0 2px 16px rgba(44,26,30,0.25);
+    }
+    .catalogue-hero__subtitle {
+      font-size: var(--text-base);
+      color: rgba(250,246,241,0.78);
+      margin-bottom: 0;
+    }
+
+    /* ── BARRE DE FILTRES REPENSÉE ── */
+    .catalogue-bar {
+      position: sticky;
+      top: var(--header-height);
+      z-index: 50;
+      background: var(--color-blanc-pur);
+      border-bottom: 1px solid var(--color-beige-dark);
+      box-shadow: 0 2px 12px rgba(107,26,42,0.07);
+    }
+    .catalogue-bar__inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-3);
+      padding-block: var(--space-4);
+    }
+
+    /* Search */
+    .catalogue-search {
+      position: relative;
+      flex: 1 1 200px;
+      min-width: 160px;
+      max-width: 300px;
+    }
+    .catalogue-search__icon {
+      position: absolute;
+      left: var(--space-3);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-muted);
+      pointer-events: none;
+      font-size: 1rem;
+    }
+    .catalogue-search input {
+      width: 100%;
+      padding: var(--space-2) var(--space-4) var(--space-2) calc(var(--space-3) + 1.4rem);
+      border: 1.5px solid var(--color-beige-dark);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      background: var(--color-blanc);
+      color: var(--color-text);
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+    .catalogue-search input:focus {
+      outline: none;
+      border-color: var(--color-bordeaux);
+      box-shadow: 0 0 0 3px rgba(107,26,42,0.09);
+    }
+    .catalogue-search input::placeholder { color: var(--color-text-muted); }
+
+    /* Séparateur vertical */
+    .catalogue-bar__sep {
+      width: 1px;
+      height: 28px;
+      background: var(--color-beige-dark);
+      flex-shrink: 0;
+    }
+    @media (max-width: 600px) { .catalogue-bar__sep { display: none; } }
+
+    /* Pills catégorie */
+    .cat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+    }
+    .cat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--color-beige-dark);
+      background: var(--color-blanc);
+      color: var(--color-text-light);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      white-space: nowrap;
+    }
+    .cat-pill:hover {
+      border-color: var(--color-rose-dark);
+      color: var(--color-bordeaux);
+      background: var(--color-rose-light);
+    }
+    .cat-pill.active {
+      background: var(--color-bordeaux);
+      border-color: var(--color-bordeaux);
+      color: var(--color-blanc-pur);
+      box-shadow: 0 2px 8px rgba(107,26,42,0.25);
+    }
+    .cat-pill__count {
+      background: rgba(255,255,255,0.25);
+      border-radius: var(--radius-full);
+      padding: 1px 6px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+    .cat-pill.active .cat-pill__count { background: rgba(255,255,255,0.22); }
+
+    /* Selects droite */
+    .catalogue-bar__selects {
+      display: flex;
+      gap: var(--space-2);
+      align-items: center;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .bar-select {
+      padding: 7px 32px 7px 12px;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--color-text);
+      background: var(--color-blanc);
+      border: 1.5px solid var(--color-beige-dark);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236B5B5F' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      transition: border-color var(--transition-base);
+    }
+    .bar-select:focus { outline: none; border-color: var(--color-bordeaux); }
+
+    /* ── BANDE RÉSULTATS ── */
+    .catalogue-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: var(--space-5);
+      border-bottom: 1px solid var(--color-beige-dark);
+      margin-bottom: var(--space-8);
+    }
+    .catalogue-meta__count {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+    .catalogue-meta__count strong {
+      color: var(--color-bordeaux);
+      font-weight: 700;
+    }
+    .catalogue-meta__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: var(--color-rose-light);
+      color: var(--color-bordeaux);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 700;
+    }
+
+    /* ── EMPTY STATE ── */
+    .catalogue-empty {
+      text-align: center;
+      padding-block: var(--space-20);
+    }
+    .catalogue-empty__icon {
+      font-size: 3.5rem;
+      margin-bottom: var(--space-5);
+      display: block;
+    }
+    .catalogue-empty h3 {
+      font-family: var(--font-serif);
+      font-size: var(--text-xl);
+      color: var(--color-text);
+      margin-bottom: var(--space-3);
+    }
+    .catalogue-empty p {
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-6);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══ -->
+  <header class="header header--scrolled" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img src="https://i.ibb.co/RTVBQsWT/logo.jpg" alt="La Cave des Senteurs" class="logo__img" />
+      </a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="index.html"           class="nav__link">Accueil</a></li>
+          <li><a href="catalogue.html"        class="nav__link active">Catalogue</a></li>
+          <li><a href="parfums.html"          class="nav__link">Parfums</a></li>
+          <li><a href="diffuseurs.html"       class="nav__link">Diffuseurs</a></li>
+          <li><a href="huiles-parfumees.html" class="nav__link">Huiles</a></li>
+          <li><a href="a-propos.html"         class="nav__link">&Agrave; propos</a></li>
+          <li><a href="contact.html"          class="nav__link">Contact</a></li>
+          <li><a href="blog.html"             class="nav__link">Blog</a></li>
+        </ul>
+      </nav>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══ HERO ══ -->
+    <section class="catalogue-hero">
+      <div class="catalogue-hero__content">
+        <p class="catalogue-hero__eyebrow">Notre s&eacute;lection</p>
+        <h1 class="catalogue-hero__title">Catalogue Complet</h1>
+        <p class="catalogue-hero__subtitle">
+          Parfums, diffuseurs &amp; huiles parfum&eacute;es &mdash; toute notre collection r&eacute;unie
+        </p>
+      </div>
+    </section>
+
+    <!-- ══ BARRE FILTRES ══ -->
+    <div class="catalogue-bar">
+      <div class="container catalogue-bar__inner">
+
+        <!-- Recherche -->
+        <div class="catalogue-search">
+          <span class="catalogue-search__icon">🔍</span>
+          <input
+            type="search"
+            id="search-input"
+            placeholder="Rechercher&hellip;"
+            aria-label="Rechercher un produit"
+          />
+        </div>
+
+        <div class="catalogue-bar__sep"></div>
+
+        <!-- Pills catégorie -->
+        <div class="cat-pills" role="group" aria-label="Filtrer par catégorie">
+          <button class="cat-pill active" data-filter="tous">
+            Tous <span class="cat-pill__count" id="count-tous">0</span>
+          </button>
+          <button class="cat-pill" data-filter="parfums">
+            🌸 Parfums <span class="cat-pill__count" id="count-parfums">0</span>
+          </button>
+          <button class="cat-pill" data-filter="diffuseurs">
+            🕯️ Diffuseurs <span class="cat-pill__count" id="count-diffuseurs">0</span>
+          </button>
+          <button class="cat-pill" data-filter="huiles-parfumees">
+            ✨ Huiles <span class="cat-pill__count" id="count-huiles">0</span>
+          </button>
+          <button class="cat-pill cat-pill--gold" data-filter="bestseller">
+            ⭐ Best-sellers
+          </button>
+        </div>
+
+        <!-- Selects -->
+        <div class="catalogue-bar__selects">
+          <select id="filter-marque" class="bar-select" aria-label="Filtrer par marque">
+            <option value="tous">Toutes les marques</option>
+            <option value="Christian Dior">Christian Dior</option>
+            <option value="By Kilian">By Kilian</option>
+            <option value="Louis Vuitton">Louis Vuitton</option>
+            <option value="Guerlain">Guerlain</option>
+            <option value="Givenchy">Givenchy</option>
+            <option value="Jean Paul Gaultier">Jean Paul Gaultier</option>
+            <option value="Maison Crivelli">Maison Crivelli</option>
+            <option value="Lancome">Lancome</option>
+            <option value="Yves Saint Laurent">Yves Saint Laurent</option>
+            <option value="Kayali">Kayali</option>
+            <option value="Tiziana Terenzi">Tiziana Terenzi</option>
+            <option value="Paco Rabanne">Paco Rabanne</option>
+            <option value="Maison Francis Kurkdjian">Maison Francis Kurkdjian</option>
+            <option value="Loris">Loris</option>
+            <option value="Era by Gandour">Era by Gandour</option>
+            <option value="Gloria Perfume">Gloria Perfume</option>
+          </select>
+          <select id="filter-prix" class="bar-select" aria-label="Filtrer par prix">
+            <option value="tous">Tous les prix</option>
+            <option value="moins-30">Moins de 10 000 FCFA</option>
+            <option value="30-60">10 000 – 20 000 FCFA</option>
+            <option value="60-100">40 000 – 46 000 FCFA</option>
+            <option value="plus-100">Plus de 46 000 FCFA</option>
+          </select>
+          <select id="sort-select" class="bar-select" aria-label="Trier les produits">
+            <option value="default">Trier par&hellip;</option>
+            <option value="prix-asc">Prix &uarr;</option>
+            <option value="prix-desc">Prix &darr;</option>
+            <option value="nom">Nom A–Z</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ GRILLE PRODUITS ══ -->
+    <section class="section" style="padding-top: var(--space-8);">
+      <div class="container">
+
+        <!-- Méta résultats -->
+        <div class="catalogue-meta">
+          <p class="catalogue-meta__count">
+            <strong><span id="product-count">0</span></strong> produit(s) trouv&eacute;(s)
+          </p>
+          <span class="catalogue-meta__tag" id="active-filter-tag">Tous les produits</span>
+        </div>
+
+        <!-- Grille -->
+        <div class="products__grid" id="catalogue-grid"></div>
+
+        <!-- État vide (caché par défaut) -->
+        <div class="catalogue-empty" id="catalogue-empty" style="display:none;">
+          <span class="catalogue-empty__icon">🔎</span>
+          <h3>Aucun produit trouv&eacute;</h3>
+          <p>Essayez d&rsquo;autres mots-cl&eacute;s ou modifiez vos filtres.</p>
+          <button class="btn btn--primary" id="reset-filters">R&eacute;initialiser les filtres</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="logo logo--light">
+          <img src="https://i.ibb.co/RTVBQsWT/logo.jpg" alt="La Cave des Senteurs" class="logo__img logo__img--footer" />
+        </a>
+        <p class="footer__tagline">L&rsquo;art du parfum &agrave; votre port&eacute;e</p>
+      </div>
+      <div class="footer__nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="a-propos.html">&Agrave; propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__nav">
+        <h4>Cat&eacute;gories</h4>
+        <ul>
+          <li><a href="parfums.html">Parfums</a></li>
+          <li><a href="diffuseurs.html">Diffuseurs</a></li>
+          <li><a href="huiles-parfumees.html">Huiles Parfum&eacute;es</a></li>
+        </ul>
+      </div>
+      <div class="footer__contact">
+        <h4>Commander</h4>
+        <a href="https://wa.me/22898879988" class="footer__whatsapp" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <p class="footer__hours">Disponible 7j/7<br />9h &ndash; 20h</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>&copy; 2026 La Cave des Senteurs. Tous droits r&eacute;serv&eacute;s.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bouton WhatsApp flottant -->
+  <a href="https://wa.me/22898879988?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20vos%20produits." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Commander via WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span>Commander</span>
+  </a>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/catalogue.js"></script>
+  <script src="js/chatbot.js"></script>
+
+  <script>
+  // ── Script catalogue amélioré ──
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Compteurs par catégorie dans les pills
+    function updateCounts() {
+      const counts = { tous: PRODUCTS.length, parfums: 0, diffuseurs: 0, 'huiles-parfumees': 0 };
+      PRODUCTS.forEach(p => { if (counts[p.categorie] !== undefined) counts[p.categorie]++; });
+      document.getElementById('count-tous').textContent      = counts.tous;
+      document.getElementById('count-parfums').textContent   = counts.parfums;
+      document.getElementById('count-diffuseurs').textContent= counts.diffuseurs;
+      document.getElementById('count-huiles').textContent    = counts['huiles-parfumees'];
+    }
+    updateCounts();
+
+    // Pills → filtre
+    document.querySelectorAll('.cat-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        // Filtre best-seller spécial
+        if (filter === 'bestseller') {
+          const grid = document.getElementById('catalogue-grid');
+          if (grid) {
+            const items = PRODUCTS.filter(p => p.bestSeller);
+            grid.innerHTML = items.map(p => createProductCard(p)).join('');
+            const countEl = document.getElementById('product-count');
+            if (countEl) countEl.textContent = items.length;
+          }
+          const tag = document.getElementById('active-filter-tag');
+          if (tag) tag.textContent = '⭐ Best-sellers';
+          return;
+        }
+
+        // Synchronise avec le catalogue.js s'il utilise data-filter
+        const filterBtns = document.querySelectorAll('.filter-btn[data-filter]');
+        filterBtns.forEach(fb => {
+          fb.classList.toggle('active', fb.dataset.filter === filter);
+          if (fb.dataset.filter === filter) fb.click();
+        });
+        // Tag actif
+        const labels = { tous: 'Tous les produits', parfums: 'Parfums', diffuseurs: 'Diffuseurs', 'huiles-parfumees': 'Huiles parfumées' };
+        const tag = document.getElementById('active-filter-tag');
+        if (tag) tag.textContent = labels[filter] || 'Tous les produits';
+      });
+    });
+
+    // Bouton reset
+    const resetBtn = document.getElementById('reset-filters');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        document.getElementById('search-input').value = '';
+        document.getElementById('filter-prix').value  = 'tous';
+        document.getElementById('filter-marque').value = 'tous';
+        document.getElementById('sort-select').value  = 'default';
+        document.querySelector('.cat-pill[data-filter="tous"]').click();
+      });
+    }
+
+    // Filtre marque
+    document.getElementById('filter-marque').addEventListener('change', function() {
+      applyAllFilters();
+    });
+
+    // Fonction centrale de filtrage
+    function applyAllFilters() {
+      const marque = document.getElementById('filter-marque').value;
+      const prix = document.getElementById('filter-prix').value;
+      const sort = document.getElementById('sort-select').value;
+      const search = document.getElementById('search-input') ? document.getElementById('search-input').value.toLowerCase() : '';
+      const catPill = document.querySelector('.cat-pill.active');
+      const cat = catPill ? catPill.dataset.filter : 'tous';
+
+      let items = PRODUCTS.slice();
+
+      // Filtre categorie
+      if (cat !== 'tous' && cat !== 'bestseller') {
+        items = items.filter(p => p.categorie === cat);
+      } else if (cat === 'bestseller') {
+        items = items.filter(p => p.bestSeller);
+      }
+
+      // Filtre marque
+      if (marque !== 'tous') {
+        items = items.filter(p => p.marque === marque);
+      }
+
+      // Filtre prix
+      if (prix !== 'tous') {
+        items = items.filter(p => getPrixRange(p) === prix);
+      }
+
+      // Recherche
+      if (search) {
+        items = items.filter(p =>
+          p.nom.toLowerCase().includes(search) ||
+          (p.marque && p.marque.toLowerCase().includes(search)) ||
+          p.description.toLowerCase().includes(search)
+        );
+      }
+
+      // Tri
+      if (sort === 'prix-asc') items.sort((a, b) => a.prix - b.prix);
+      else if (sort === 'prix-desc') items.sort((a, b) => b.prix - a.prix);
+      else if (sort === 'nom') items.sort((a, b) => a.nom.localeCompare(b.nom));
+
+      const grid = document.getElementById('catalogue-grid');
+      if (grid) {
+        grid.innerHTML = items.map(p => createProductCard(p)).join('');
+        const countEl = document.getElementById('product-count');
+        if (countEl) countEl.textContent = items.length;
+      }
+    }
+
+    // Appliquer aussi sur prix et tri
+    document.getElementById('filter-prix').addEventListener('change', applyAllFilters);
+    document.getElementById('sort-select').addEventListener('change', applyAllFilters);
+
+    // Observer pour afficher l'état vide
+    const grid  = document.getElementById('catalogue-grid');
+    const empty = document.getElementById('catalogue-empty');
+    if (grid && empty) {
+      const obs = new MutationObserver(() => {
+        const hasCards = grid.querySelector('.product-card');
+        empty.style.display = hasCards ? 'none' : 'block';
+      });
+      obs.observe(grid, { childList: true });
+    }
+  });
+  </script>
+
+</body>
+</html>

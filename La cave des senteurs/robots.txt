@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://caloneco66-tech.github.io/Cave-des-Senteurs/sitemap.xml
