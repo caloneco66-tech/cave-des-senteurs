@@ -683,7 +683,10 @@ strong, b { font-weight: 700; }
   gap: var(--space-6);
 }
 @media (min-width: 768px) {
-  .categories__grid { grid-template-columns: repeat(3, 1fr); }
+  .categories__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .categories__grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 .category-card {
@@ -725,6 +728,9 @@ strong, b { font-weight: 700; }
 }
 .category-card__img--huiles {
   background: linear-gradient(135deg, #D4909A 0%, var(--color-rose-dark) 40%, var(--color-bordeaux) 100%);
+}
+.category-card__img--sprays {
+  background: linear-gradient(135deg, #5B8A6E 0%, #3D6B52 40%, #2A4D3A 100%);
 }
 
 .category-card__img::after {

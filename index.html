@@ -3,29 +3,237 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>La Cave des Senteurs - Parfums, Diffuseurs et Huiles Parfumees</title>
+  <title>La Cave des Senteurs &ndash; Parfums, Diffuseurs &amp; Huiles Parfumees</title>
   <link rel="icon" type="image/png" href="favicon.png" />
-  <meta name="description" content="La Cave des Senteurs : parfums de luxe, diffuseurs et huiles parfumees. Commandez via WhatsApp. Christian Dior, Louis Vuitton, Guerlain, By Kilian." />
+  <meta name="description" content="La Cave des Senteurs : parfums de luxe, diffuseurs et huiles parfumees. Commandez facilement via WhatsApp." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://caloneco66-tech.github.io/Cave-des-Senteurs/" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="La Cave des Senteurs" />
-  <meta property="og:description" content="Parfums de luxe, diffuseurs et huiles parfumees. Commandez via WhatsApp." />
+  <meta property="og:title" content="La Cave des Senteurs – Parfums & Diffuseurs" />
+  <meta property="og:url" content="https://caloneco66-tech.github.io/Cave-des-Senteurs/" />
   <meta property="og:image" content="https://caloneco66-tech.github.io/Cave-des-Senteurs/img/hero.jpg" />
-  <meta property="og:site_name" content="La Cave des Senteurs" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "La Cave des Senteurs",
+    "url": "https://caloneco66-tech.github.io/Cave-des-Senteurs/",
+    "sameAs": ["https://wa.me/22898879988"]
+  }
+  </script>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img src="img/logo.jpg" alt="La Cave des Senteurs" class="logo__img" />
+      </a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link active">Accueil</a></li>
+          <li><a href="catalogue.html" class="nav__link">Catalogue</a></li>
+          <li><a href="parfums.html" class="nav__link">Parfums</a></li>
+          <li><a href="diffuseurs.html" class="nav__link">Diffuseurs</a></li>
+          <li><a href="huiles-parfumees.html" class="nav__link">Huiles</a></li>
+          <li><a href="sprays.html" class="nav__link">Sprays</a></li>
+          <li><a href="a-propos.html" class="nav__link">&Agrave; propos</a></li>
+          <li><a href="contact.html" class="nav__link">Contact</a></li>
+          <li><a href="blog.html" class="nav__link">Blog</a></li>
+        </ul>
+      </nav>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero__overlay"></div>
+      <div class="container hero__content">
+        <p class="hero__eyebrow">La Cave des Senteurs</p>
+        <h1 class="hero__title"><em>Affirmez votre aura</em></h1>
+        <p class="hero__subtitle">D&eacute;couvrez nos parfums, diffuseurs et huiles parfum&eacute;es &mdash; s&eacute;lectionn&eacute;s avec soin pour sublimer votre quotidien.</p>
+        <div class="hero__cta">
+          <a href="catalogue.html" class="btn btn--primary">D&eacute;couvrir la collection</a>
+          <a href="https://wa.me/22898879988?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20vos%20produits." class="btn btn--outline" target="_blank" rel="noopener">Nous contacter</a>
+        </div>
+      </div>
+      <div class="hero__scroll">
+        <span>D&eacute;filer</span>
+        <div class="hero__scroll-line"></div>
+      </div>
     </section>
+
+    <section class="categories section">
+      <div class="container">
+        <div class="section__header">
+          <p class="section__eyebrow">Notre univers</p>
+          <h2 class="section__title">Explorez nos cat&eacute;gories</h2>
+          <p class="section__subtitle">Quatre univers olfactifs pour tous vos d&eacute;sirs de senteurs</p>
+        </div>
+        <div class="categories__grid">
+          <a href="parfums.html" class="category-card">
+            <div class="category-card__img category-card__img--parfums">
+              <img src="img/parfums.jpeg" alt="Parfums" class="category-card__photo" />
+            </div>
+            <div class="category-card__body">
+              <h3 class="category-card__title">Parfums</h3>
+              <p class="category-card__desc">Eaux de parfum et eaux de toilette aux fragrances envo&ucirc;tantes</p>
+              <span class="category-card__link">Voir la collection &rarr;</span>
+            </div>
+          </a>
+          <a href="diffuseurs.html" class="category-card category-card--featured">
+            <div class="category-card__img category-card__img--diffuseurs">
+              <img src="img/diffiseures.jpeg" alt="Diffuseurs" class="category-card__photo" />
+            </div>
+            <div class="category-card__body">
+              <h3 class="category-card__title">Diffuseurs</h3>
+              <p class="category-card__desc">Diffuseurs &agrave; roseaux et &eacute;lectriques pour parfumer votre int&eacute;rieur</p>
+              <span class="category-card__link">Voir la collection &rarr;</span>
+            </div>
+          </a>
+          <a href="huiles-parfumees.html" class="category-card">
+            <div class="category-card__img category-card__img--huiles">
+              <img src="img/huile.jpeg" alt="Huiles Parfum&eacute;es" class="category-card__photo" />
+            </div>
+            <div class="category-card__body">
+              <h3 class="category-card__title">Huiles Parfum&eacute;es</h3>
+              <p class="category-card__desc">Huiles pr&eacute;cieuses pour le corps, le bain et la maison</p>
+              <span class="category-card__link">Voir la collection &rarr;</span>
+            </div>
+          </a>
+          <a href="sprays.html" class="category-card">
+            <div class="category-card__img category-card__img--sprays">
+              <img src="img/spray-patchouli.jpeg" alt="Sprays d'Int&eacute;rieur" class="category-card__photo" />
+            </div>
+            <div class="category-card__body">
+              <h3 class="category-card__title">Sprays d&rsquo;Int&eacute;rieur</h3>
+              <p class="category-card__desc">Sprays d&rsquo;ambiance pour parfumer instantan&eacute;ment chaque pi&egrave;ce</p>
+              <span class="category-card__link">Voir la collection &rarr;</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="nouveautes section section--beige">
+      <div class="container">
+        <div class="section__header">
+          <p class="section__eyebrow">Arrivages r&eacute;cents</p>
+          <h2 class="section__title">Nos Nouveaut&eacute;s</h2>
+          <p class="section__subtitle">Les derni&egrave;res cr&eacute;ations qui ont rejoint notre cave</p>
+        </div>
+        <div class="products__grid" id="nouveautes-grid"></div>
+        <div class="section__footer">
+          <a href="catalogue.html" class="btn btn--primary">Voir tout le catalogue</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="whatsapp-banner">
+      <div class="container whatsapp-banner__inner">
+        <div class="whatsapp-banner__text">
+          <h2>Commandez facilement via WhatsApp</h2>
+          <p>Pas de panier, pas de compte &agrave; cr&eacute;er. Envoyez-nous simplement un message et nous nous occupons de tout.</p>
+        </div>
+        <a href="https://wa.me/22898879988?text=Bonjour%2C%20je%20souhaite%20passer%20une%20commande." class="btn btn--whatsapp" target="_blank" rel="noopener">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Commander sur WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <section class="about-preview section">
+      <div class="container about-preview__inner">
+        <div class="about-preview__img">
+          <img src="img/PHOTO A PROPOS.png" alt="La Cave des Senteurs" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);" />
+        </div>
+        <div class="about-preview__content">
+          <p class="section__eyebrow">Notre histoire</p>
+          <h2 class="section__title">Une passion pour les senteurs</h2>
+          <p>La Cave des Senteurs est n&eacute;e d&rsquo;un amour profond pour l&rsquo;art de la parfumerie. Nous s&eacute;lectionnons chaque fragrance avec soin, en privil&eacute;giant la qualit&eacute;, l&rsquo;authenticit&eacute; et l&rsquo;&eacute;motion olfactive.</p>
+          <p>Chaque produit que nous proposons raconte une histoire, &eacute;voque un souvenir, transporte vers un ailleurs.</p>
+          <a href="a-propos.html" class="btn btn--secondary">En savoir plus</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="garanties section section--beige">
+      <div class="container">
+        <div class="garanties__grid">
+          <div class="garantie-item">
+            <span class="garantie-item__icon">&#9989;</span>
+            <h4>Produits Authentiques</h4>
+            <p>100% originaux, s&eacute;lectionn&eacute;s avec soin</p>
+          </div>
+          <div class="garantie-item">
+            <span class="garantie-item__icon">&#9889;</span>
+            <h4>R&eacute;ponse Rapide</h4>
+            <p>Confirmation WhatsApp en moins de 30 min</p>
+          </div>
+          <div class="garantie-item">
+            <span class="garantie-item__icon">&#128666;</span>
+            <h4>Livraison Rapide</h4>
+            <p>Livraison &agrave; domicile disponible</p>
+          </div>
+          <div class="garantie-item">
+            <span class="garantie-item__icon">&#128172;</span>
+            <h4>Service 7j/7</h4>
+            <p>Disponible de 9h &agrave; 20h tous les jours</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="avis section">
+      <div class="container">
+        <div class="section__header">
+          <p class="section__eyebrow">T&eacute;moignages</p>
+          <h2 class="section__title">Nos clients adorent &#10084;&#65039;</h2>
+          <p class="section__subtitle">Plus de 200 clients satisfaits nous font confiance</p>
+        </div>
+        <div class="avis__grid">
+          <div class="avis-card">
+            <div class="avis-card__stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p class="avis-card__text">&ldquo;Tobacco Honey est incroyable, le sillage dure toute la journ&eacute;e. Livraison rapide et service au top !&rdquo;</p>
+            <div class="avis-card__author">
+              <span class="avis-card__avatar">A</span>
+              <div><strong>Aminata K.</strong><span>Lom&eacute;, Togo</span></div>
+            </div>
+          </div>
+          <div class="avis-card">
+            <div class="avis-card__stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p class="avis-card__text">&ldquo;J&rsquo;ai command&eacute; Good Girl Gone Bad, c&rsquo;est exactement ce que je cherchais. Tr&egrave;s bonne qualit&eacute; et prix imbattable !&rdquo;</p>
+            <div class="avis-card__author">
+              <span class="avis-card__avatar">F</span>
+              <div><strong>Fatou D.</strong><span>Abidjan, C&ocirc;te d&rsquo;Ivoire</span></div>
+            </div>
+          </div>
+          <div class="avis-card">
+            <div class="avis-card__stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p class="avis-card__text">&ldquo;Les huiles parfum&eacute;es Gloria sont excellentes. Quelques gouttes suffisent pour toute la journ&eacute;e. Je recommande !&rdquo;</p>
+            <div class="avis-card__author">
+              <span class="avis-card__avatar">K</span>
+              <div><strong>Kofi M.</strong><span>Accra, Ghana</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="timer-section">
       <div class="container timer-section__inner">
         <div class="timer-section__text">
-          <h2>Commandez aujourd'hui !</h2>
-          <p>Offre valable encore :</p>
+          <p class="section__eyebrow" style="color:var(--color-rose-light);">Offre sp&eacute;ciale</p>
+          <h2>&#128293; Commandez aujourd&rsquo;hui !</h2>
+          <p>Profitez de nos prix exceptionnels. Offre valable encore :</p>
         </div>
         <div class="timer">
           <div class="timer__block"><span class="timer__num" id="timer-h">00</span><span class="timer__label">Heures</span></div>
@@ -34,125 +242,149 @@
           <span class="timer__sep">:</span>
           <div class="timer__block"><span class="timer__num" id="timer-s">00</span><span class="timer__label">Secondes</span></div>
         </div>
-        <a href="https://wa.me/22898879988" class="btn btn--whatsapp" target="_blank" rel="noopener">J'en profite maintenant</a>
+        <a href="https://wa.me/22898879988?text=Bonjour%2C%20je%20souhaite%20profiter%20de%20l%27offre%20du%20jour%20!" class="btn btn--whatsapp" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          J&rsquo;en profite maintenant
+        </a>
       </div>
     </section>
+
     <section class="temoignages">
       <div class="container">
         <p class="temoignages__title">De la part de nos clients</p>
-        <div class="temoignages__slider">
+        <div class="temoignages__slider" id="temoignages-slider">
           <div class="temoignage active">
             <p class="temoignage__note">&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-            <p class="temoignage__texte">"Tobacco Honey est incroyable, le sillage dure toute la journee. Livraison rapide et service au top !"</p>
+            <p class="temoignage__texte">&ldquo;Tobacco Honey est incroyable, le sillage dure toute la journ&eacute;e. Livraison rapide et service au top !&rdquo;</p>
             <strong class="temoignage__auteur">AMINATA K.</strong>
           </div>
           <div class="temoignage">
             <p class="temoignage__note">&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-            <p class="temoignage__texte">"J'ai commande Good Girl Gone Bad, c'est exactement ce que je cherchais. Tres bonne qualite !"</p>
+            <p class="temoignage__texte">&ldquo;J&rsquo;ai command&eacute; Good Girl Gone Bad, c&rsquo;est exactement ce que je cherchais. Tr&egrave;s bonne qualit&eacute; !&rdquo;</p>
             <strong class="temoignage__auteur">FATOU D.</strong>
           </div>
           <div class="temoignage">
             <p class="temoignage__note">&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-            <p class="temoignage__texte">"Les huiles parfumees Gloria sont excellentes. Quelques gouttes suffisent pour toute la journee."</p>
+            <p class="temoignage__texte">&ldquo;Les huiles parfum&eacute;es Gloria sont excellentes. Quelques gouttes suffisent pour toute la journ&eacute;e.&rdquo;</p>
             <strong class="temoignage__auteur">KOFI M.</strong>
           </div>
           <div class="temoignage">
             <p class="temoignage__note">&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-            <p class="temoignage__texte">"Imagination de Louis Vuitton recu en parfait etat. Je recommande vivement La Cave des Senteurs !"</p>
+            <p class="temoignage__texte">&ldquo;Imagination de Louis Vuitton re&ccedil;u en parfait &eacute;tat. Je recommande vivement La Cave des Senteurs !&rdquo;</p>
             <strong class="temoignage__auteur">IBRAHIM S.</strong>
           </div>
           <div class="temoignage">
             <p class="temoignage__note">&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-            <p class="temoignage__texte">"Service client exceptionnel, reponse rapide sur WhatsApp. Mon parfum prefere livre en 24h !"</p>
+            <p class="temoignage__texte">&ldquo;Service client exceptionnel, r&eacute;ponse rapide sur WhatsApp. Mon parfum pr&eacute;f&eacute;r&eacute; livr&eacute; en 24h !&rdquo;</p>
             <strong class="temoignage__auteur">MARIE-CLAIRE T.</strong>
           </div>
           <div class="temoignage">
             <p class="temoignage__note">&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-            <p class="temoignage__texte">"Ultra Male de JPG, une fragrance puissante et longue tenue. Exactement ce que je voulais. Merci !"</p>
+            <p class="temoignage__texte">&ldquo;Ultra Male de JPG, une fragrance puissante et longue tenue. Exactement ce que je voulais. Merci !&rdquo;</p>
             <strong class="temoignage__auteur">SEYDOU B.</strong>
           </div>
         </div>
         <div class="temoignages__dots" id="temoignages-dots"></div>
       </div>
     </section>
+
   </main>
+
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
         <a href="index.html" class="logo logo--light">
           <img src="img/logo.jpg" alt="La Cave des Senteurs" class="logo__img logo__img--footer" />
         </a>
-        <p class="footer__tagline">L'art du parfum a votre portee</p>
+        <p class="footer__tagline">L&rsquo;art du parfum &agrave; votre port&eacute;e</p>
       </div>
       <div class="footer__nav">
         <h4>Navigation</h4>
         <ul>
           <li><a href="index.html">Accueil</a></li>
           <li><a href="catalogue.html">Catalogue</a></li>
-          <li><a href="a-propos.html">A propos</a></li>
+          <li><a href="a-propos.html">&Agrave; propos</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="blog.html">Blog</a></li>
         </ul>
       </div>
       <div class="footer__nav">
-        <h4>Categories</h4>
+        <h4>Cat&eacute;gories</h4>
         <ul>
           <li><a href="parfums.html">Parfums</a></li>
           <li><a href="diffuseurs.html">Diffuseurs</a></li>
-          <li><a href="huiles-parfumees.html">Huiles Parfumees</a></li>
+          <li><a href="huiles-parfumees.html">Huiles Parfum&eacute;es</a></li>
         </ul>
       </div>
       <div class="footer__contact">
         <h4>Commander</h4>
-        <a href="https://wa.me/22898879988" class="footer__whatsapp" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="mailto:lacavedessenteurs@gmail.com" style="display:block;color:rgba(250,246,241,0.7);font-size:0.875rem;margin-top:0.75rem;text-decoration:none;">lacavedessenteurs@gmail.com</a>
-        <p class="footer__hours">Disponible 7j/7<br />9h - 20h</p>
+        <a href="https://wa.me/22898879988" class="footer__whatsapp" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <a href="mailto:lacavedessenteurs@gmail.com" style="display:block;color:rgba(250,246,241,0.7);font-size:var(--text-sm);margin-top:var(--space-3);text-decoration:none;">&#128231; lacavedessenteurs@gmail.com</a>
+        <p class="footer__hours">Disponible 7j/7<br />9h &ndash; 20h</p>
       </div>
     </div>
     <div class="footer__bottom">
-      <div class="container"><p>&copy; 2026 La Cave des Senteurs. Tous droits reserves.</p></div>
+      <div class="container">
+        <p>&copy; 2026 La Cave des Senteurs. Tous droits r&eacute;serv&eacute;s.</p>
+      </div>
     </div>
   </footer>
-  <a href="https://wa.me/22898879988" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Commander via WhatsApp">
+
+  <a href="https://wa.me/22898879988?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20vos%20produits." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Commander via WhatsApp">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     <span>Commander</span>
   </a>
+
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
   <script src="js/chatbot.js"></script>
   <script>
+    // Carousel temoignages
     document.addEventListener('DOMContentLoaded', function() {
       var items = document.querySelectorAll('.temoignage');
       var dotsContainer = document.getElementById('temoignages-dots');
-      if (items.length && dotsContainer) {
-        var current = 0; var timer;
-        for (var i = 0; i < items.length; i++) {
-          (function(idx) {
-            var dot = document.createElement('button');
-            dot.className = 'temoignages__dot' + (idx === 0 ? ' active' : '');
-            dot.addEventListener('click', function() { goTo(idx); });
-            dotsContainer.appendChild(dot);
-          })(i);
-        }
-        function goTo(index) {
-          items[current].classList.remove('active'); dotsContainer.children[current].classList.remove('active');
-          current = index;
-          items[current].classList.add('active'); dotsContainer.children[current].classList.add('active');
-          clearInterval(timer); timer = setInterval(function() { goTo((current+1)%items.length); }, 4000);
-        }
-        timer = setInterval(function() { goTo((current+1)%items.length); }, 4000);
+      if (!items.length || !dotsContainer) return;
+      var current = 0;
+      var timer;
+      items.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'temoignages__dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Temoignage ' + (i + 1));
+        dot.addEventListener('click', function() { goTo(i); });
+        dotsContainer.appendChild(dot);
+      });
+      function goTo(index) {
+        items[current].classList.remove('active');
+        dotsContainer.children[current].classList.remove('active');
+        current = index;
+        items[current].classList.add('active');
+        dotsContainer.children[current].classList.add('active');
+        clearInterval(timer);
+        timer = setInterval(function() { goTo((current + 1) % items.length); }, 4000);
       }
-      function updateTimer() {
-        var now = new Date(); var midnight = new Date(); midnight.setHours(23,59,59,0);
-        var diff = midnight - now;
-        var h = document.getElementById('timer-h'); var m = document.getElementById('timer-m'); var s = document.getElementById('timer-s');
-        if(h) h.textContent = String(Math.floor(diff/3600000)).padStart(2,'0');
-        if(m) m.textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
-        if(s) s.textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
-      }
-      updateTimer(); setInterval(updateTimer, 1000);
+      timer = setInterval(function() { goTo((current + 1) % items.length); }, 4000);
     });
+
+    // Timer countdown
+    function updateTimer() {
+      var now = new Date();
+      var midnight = new Date();
+      midnight.setHours(23, 59, 59, 0);
+      var diff = midnight - now;
+      var h = Math.floor(diff / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      var elH = document.getElementById('timer-h');
+      var elM = document.getElementById('timer-m');
+      var elS = document.getElementById('timer-s');
+      if (elH) elH.textContent = String(h).padStart(2,'0');
+      if (elM) elM.textContent = String(m).padStart(2,'0');
+      if (elS) elS.textContent = String(s).padStart(2,'0');
+    }
+    updateTimer();
+    setInterval(updateTimer, 1000);
   </script>
 </body>
 </html>
-

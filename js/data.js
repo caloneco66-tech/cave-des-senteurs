@@ -695,8 +695,10 @@ function getCategorieLabel(cat) {
 }
 
 function getPrixRange(produit) {
-  if (produit.prix <= 9999)  return "moins-30";   // Moins de 10 000
-  if (produit.prix <= 19999) return "30-60";       // 10 000 – 20 000
-  if (produit.prix <= 46000) return "60-100";      // 40 000 – 46 000
-  return "plus-100";                               // Plus de 46 000
+  if (produit.prix === 0)        return "sur-demande";  // Prix sur demande
+  if (produit.prix <= 5000)      return "moins-5k";     // Moins de 5 000
+  if (produit.prix <= 10000)     return "5k-10k";       // 5 000 – 10 000
+  if (produit.prix <= 35000)     return "10k-35k";      // 10 000 – 35 000
+  if (produit.prix <= 50000)     return "35k-50k";      // 35 000 – 50 000
+  return "plus-50k";                                    // Plus de 50 000
 }
