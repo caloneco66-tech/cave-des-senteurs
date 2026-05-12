@@ -916,6 +916,30 @@ strong, b { font-weight: 700; }
   color: var(--color-bordeaux);
 }
 
+/* Desktop uniquement — footer carte compact */
+@media (min-width: 1024px) {
+  .product-card__footer {
+    gap: 4px;
+    padding-top: var(--space-2);
+  }
+  .product-card__prix {
+    font-size: 0.9rem;
+  }
+  .product-card__footer .btn--whatsapp {
+    padding: 5px 8px !important;
+    font-size: 0.68rem !important;
+    gap: 3px !important;
+  }
+  .product-card__footer .btn--whatsapp svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+  .product-card__footer .btn--panier {
+    padding: 5px 7px;
+    font-size: 0.68rem;
+  }
+}
+
 /* ============================================================
    13. WHATSAPP BANNER
    ============================================================ */
@@ -2368,12 +2392,11 @@ img.chatbot-msg__avatar {
    FIX MOBILE — z-index nav overlay + images produit
    ============================================================ */
 
-/* Fix: le nav mobile ne doit pas bloquer les clics en dessous */
-.nav:not(.nav--open) {
-  pointer-events: none;
-}
-@media (min-width: 1024px) {
-  .nav { pointer-events: all; }
+/* Fix: le nav mobile fermé ne doit pas bloquer les clics en dessous */
+@media (max-width: 1023px) {
+  .nav:not(.nav--open) {
+    pointer-events: none;
+  }
 }
 
 /* Fix: image produit non coupée sur mobile */
@@ -2658,12 +2681,16 @@ img.chatbot-msg__avatar {
   background-color: var(--color-bordeaux);
   color: var(--color-blanc-pur);
   border-color: var(--color-bordeaux);
-  font-size: var(--text-xs);
-  padding: var(--space-2) var(--space-3);
+  font-size: 0.7rem;
+  padding: 6px 8px;
+  border-radius: var(--radius-md);
+  min-width: unset;
+  white-space: nowrap;
 }
 .btn--panier:hover {
   background-color: var(--color-bordeaux-dark);
   color: var(--color-blanc-pur);
+  transform: translateY(-1px);
 }
 
 /* Chatbot bouton panier */
