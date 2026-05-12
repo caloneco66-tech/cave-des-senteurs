@@ -424,6 +424,8 @@ strong, b { font-weight: 700; }
     padding: 0;
     display: flex;
     align-items: center;
+    visibility: visible !important;
+    pointer-events: all !important;
   }
   .nav__list { flex-direction: row; gap: var(--space-1); align-items: center; }
   .nav__link {
@@ -2396,6 +2398,11 @@ img.chatbot-msg__avatar {
 @media (max-width: 1023px) {
   .nav:not(.nav--open) {
     pointer-events: none;
+    visibility: hidden;
+  }
+  .nav--open {
+    pointer-events: all;
+    visibility: visible;
   }
 }
 
