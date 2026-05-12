@@ -1,140 +1,134 @@
 ﻿// ============================================================
-// CHATBOT — La Cave des Senteurs — Guide Olfactif
+// CHATBOT — La Cave des Senteurs — Conseiller Universel
+// Gère : parfums, diffuseurs, huiles, sprays, voiture
 // ============================================================
 
 var CHATBOT_STEPS = [
   {
     id: "welcome",
-    message: "Bonjour ! Repondez a quelques questions et je vous trouve le parfum fait pour vous.",
-    options: [ { label: "Decouvrir mon parfum", value: "start" } ],
-    next: "genre"
+    message: "Bonjour ! Je suis votre conseiller olfactif. Je peux vous aider à trouver un parfum, un diffuseur, une huile parfumée ou un spray. Par où commençons-nous ?",
+    options: [
+      { label: "🌸 Un parfum", value: "cat_parfums" },
+      { label: "🕯️ Un diffuseur", value: "cat_diffuseurs" },
+      { label: "✨ Une huile parfumée", value: "cat_huiles" },
+      { label: "💨 Un spray d'intérieur", value: "cat_sprays" },
+      { label: "🚗 Diffuseur voiture", value: "cat_voiture" }
+    ],
+    key: "categorie_souhaitee",
+    next: "usage"
   },
   {
-    id: "genre",
-    message: "Ce parfum est pour qui ?",
+    id: "usage",
+    message: "C'est pour qui ?",
     options: [
-      { label: "Pour moi (femme)", value: "femme" },
-      { label: "Pour moi (homme)", value: "homme" },
-      { label: "Un cadeau", value: "mixte" }
+      { label: "Pour moi", value: "moi" },
+      { label: "Un cadeau", value: "cadeau" },
+      { label: "Ma maison / voiture", value: "maison" }
     ],
-    key: "genre",
-    next: "famille"
+    key: "usage",
+    next: "ambiance"
   },
   {
-    id: "famille",
-    message: "Quelle senteur vous attire ?",
+    id: "ambiance",
+    message: "Quelle ambiance vous attire ?",
     options: [
-      { label: "Floral et Doux", value: "floral" },
-      { label: "Oriental et Chaud", value: "oriental" },
-      { label: "Frais et Citrus", value: "frais" },
-      { label: "Gourmand et Sucre", value: "gourmand" }
+      { label: "🌸 Floral & Doux", value: "floral" },
+      { label: "🔥 Oriental & Chaud", value: "oriental" },
+      { label: "🍋 Frais & Citrus", value: "frais" },
+      { label: "🍬 Gourmand & Sucré", value: "gourmand" },
+      { label: "🌿 Boisé & Naturel", value: "boise" },
+      { label: "🍑 Fruité", value: "fruite" }
     ],
-    key: "famille",
-    next: "occasion"
-  },
-  {
-    id: "occasion",
-    message: "Pour quelle occasion ?",
-    options: [
-      { label: "Quotidien", value: "quotidien" },
-      { label: "Soiree", value: "soiree" },
-      { label: "Travail", value: "travail" }
-    ],
-    key: "occasion",
+    key: "ambiance",
     next: "budget"
   },
   {
     id: "budget",
     message: "Quel est votre budget ?",
     options: [
-      { label: "Moins de 10 000 FCFA", value: "petit" },
-      { label: "40 000 - 50 000 FCFA", value: "moyen" },
-      { label: "Plus de 50 000 FCFA", value: "grand" }
+      { label: "Moins de 5 000 FCFA", value: "tres_petit" },
+      { label: "5 000 – 10 000 FCFA", value: "petit" },
+      { label: "10 000 – 40 000 FCFA", value: "moyen" },
+      { label: "Plus de 40 000 FCFA", value: "grand" },
+      { label: "Pas de limite", value: "illimite" }
     ],
     key: "budget",
     next: "result"
   }
 ];
 
-// ── Algorithme de matching ───────────────────────────────────
-function getRecommendations(prefs) {
-  var results = [];
+// ── Algorithme de scoring universel ─────────────────────────
+function scoreProduct(p, prefs) {
+  var score = 0;
+  var desc = (p.description + " " + (p.notes ? JSON.stringify(p.notes) : "")).toLowerCase();
+  var cat = prefs.categorie_souhaitee || "";
 
-  for (var i = 0; i < PRODUCTS.length; i++) {
-    var p = PRODUCTS[i];
-    var score = 0;
-    var desc = (p.description + " " + (p.notes ? JSON.stringify(p.notes) : "")).toLowerCase();
-    var genre = p.genre ? p.genre.toLowerCase() : "";
+  // ── CATÉGORIE (poids fort) ──
+  if (cat === "cat_parfums" && p.categorie === "parfums") score += 8;
+  else if (cat === "cat_diffuseurs" && p.categorie === "diffuseurs" && p.prix > 3000) score += 8;
+  else if (cat === "cat_huiles" && p.categorie === "huiles-parfumees") score += 8;
+  else if (cat === "cat_sprays" && p.categorie === "sprays") score += 8;
+  else if (cat === "cat_voiture" && p.categorie === "diffuseurs" && p.prix <= 2000) score += 8;
+  else score += 1; // autre catégorie = score faible
 
-    // GENRE
-    if (prefs.genre === "femme") {
-      if (genre.indexOf("femme") !== -1) score += 3;
-    } else if (prefs.genre === "homme") {
-      if (genre.indexOf("homme") !== -1) score += 3;
-    } else {
-      score += 2; // cadeau = tous eligibles
-    }
-
-    // FAMILLE
-    if (prefs.famille === "floral") {
-      if (desc.indexOf("floral") !== -1 || desc.indexOf("rose") !== -1 || desc.indexOf("jasmin") !== -1 || desc.indexOf("fleur") !== -1 || desc.indexOf("pivoine") !== -1 || desc.indexOf("hibiscus") !== -1) score += 4;
-      else score += 1;
-    } else if (prefs.famille === "oriental") {
-      if (desc.indexOf("oriental") !== -1 || desc.indexOf("oud") !== -1 || desc.indexOf("ambre") !== -1 || desc.indexOf("tabac") !== -1 || desc.indexOf("vanille") !== -1 || desc.indexOf("miel") !== -1 || desc.indexOf("praline") !== -1) score += 4;
-      else score += 1;
-    } else if (prefs.famille === "frais") {
-      if (desc.indexOf("frais") !== -1 || desc.indexOf("agrume") !== -1 || desc.indexOf("bergamote") !== -1 || desc.indexOf("cedrat") !== -1 || desc.indexOf("the") !== -1) score += 4;
-      else score += 1;
-    } else if (prefs.famille === "gourmand") {
-      if (desc.indexOf("gourmand") !== -1 || desc.indexOf("miel") !== -1 || desc.indexOf("vanille") !== -1 || desc.indexOf("praline") !== -1 || desc.indexOf("poire") !== -1 || desc.indexOf("sucr") !== -1) score += 4;
-      else score += 1;
-    }
-
-    // OCCASION
-    if (prefs.occasion === "soiree") {
-      if (p.sillage === "Fort") score += 3; else score += 1;
-    } else if (prefs.occasion === "quotidien") {
-      if (p.sillage === "Modere") score += 3; else score += 1;
-    } else if (prefs.occasion === "travail") {
-      if (p.sillage === "Modere") score += 2; else score += 1;
-    }
-
-    // BUDGET
-    if (prefs.budget === "petit") {
-      if (p.prix > 0 && p.prix <= 10000) score += 5;
-      else if (p.prix > 10000) score -= 1;
-    } else if (prefs.budget === "moyen") {
-      if (p.prix > 10000 && p.prix <= 50000) score += 5;
-      else if (p.prix === 0) score += 3;
-      else score += 1;
-    } else if (prefs.budget === "grand") {
-      if (p.prix > 50000 || p.prix === 0) score += 5;
-      else score += 2;
-    }
-
-    // BONUS
-    if (p.bestSeller) score += 1;
-    if (p.categorie === "parfums") score += 1;
-
-    results.push({ produit: p, score: score });
+  // ── AMBIANCE ──
+  var amb = prefs.ambiance || "";
+  if (amb === "floral") {
+    if (desc.match(/floral|rose|jasmin|fleur|pivoine|hibiscus|cerisier|lilas/)) score += 5;
+  } else if (amb === "oriental") {
+    if (desc.match(/oriental|oud|ambre|tabac|vanille|miel|praline|encens|musc/)) score += 5;
+  } else if (amb === "frais") {
+    if (desc.match(/frais|agrume|bergamote|cedrat|the|citron|menthe|aquatique/)) score += 5;
+  } else if (amb === "gourmand") {
+    if (desc.match(/gourmand|miel|vanille|praline|poire|sucr|caramel|barbe|candy/)) score += 5;
+  } else if (amb === "boise") {
+    if (desc.match(/bois|santal|vetiver|patchouli|cedre|cuir/)) score += 5;
+  } else if (amb === "fruite") {
+    if (desc.match(/fruit|peche|mangue|framboise|grenade|melon|cerise|agrume|poire/)) score += 5;
   }
 
-  results.sort(function(a, b) { return b.score - a.score; });
-  return results.slice(0, 2).map(function(r) { return r.produit; });
+  // ── BUDGET ──
+  var bud = prefs.budget || "";
+  if (bud === "tres_petit") {
+    if (p.prix > 0 && p.prix <= 2000) score += 6;
+    else if (p.prix > 2000 && p.prix <= 5000) score += 3;
+    else if (p.prix > 5000) score -= 2;
+  } else if (bud === "petit") {
+    if (p.prix > 0 && p.prix <= 10000) score += 6;
+    else if (p.prix > 10000) score -= 1;
+  } else if (bud === "moyen") {
+    if (p.prix > 5000 && p.prix <= 40000) score += 6;
+    else if (p.prix === 0) score += 3;
+  } else if (bud === "grand" || bud === "illimite") {
+    if (p.prix > 40000 || p.prix === 0) score += 6;
+    else score += 2;
+  }
+
+  // ── USAGE ──
+  var usage = prefs.usage || "";
+  if (usage === "maison" && (p.categorie === "diffuseurs" || p.categorie === "sprays")) score += 3;
+  if (usage === "moi" && p.categorie === "parfums") score += 2;
+  if (usage === "moi" && p.categorie === "huiles-parfumees") score += 2;
+
+  // ── BONUS qualité ──
+  if (p.bestSeller) score += 2;
+  if (p.nouveaute) score += 1;
+
+  return score;
 }
 
 // ── HTML du chatbot ──────────────────────────────────────────
 function buildChatbotHTML() {
-  return '<div class="chatbot-bubble" id="chatbot-bubble" onclick="toggleChatbot()" aria-label="Trouver mon parfum">'
-    + '<img src="img/parfum-icon.png" alt="parfum" class="chatbot-bubble__img" />'
-    + '<span class="chatbot-bubble__label">Mon parfum</span>'
+  return '<div class="chatbot-bubble" id="chatbot-bubble" onclick="toggleChatbot()" aria-label="Conseiller olfactif">'
+    + '<img src="img/parfum-icon.png" alt="" class="chatbot-bubble__img" onerror="this.style.display=\'none\'" />'
+    + '<span class="chatbot-bubble__label">Conseiller</span>'
     + '<span class="chatbot-bubble__notif" id="chatbot-notif">1</span>'
     + '</div>'
     + '<div class="chatbot-window" id="chatbot-window" role="dialog" aria-hidden="true">'
     + '<div class="chatbot-header">'
     + '<div class="chatbot-header__info">'
-    + '<img src="img/parfum-icon.png" alt="parfum" class="chatbot-header__img" />'
-    + '<div><strong>Guide Olfactif</strong><span class="chatbot-header__status">&#9679; En ligne</span></div>'
+    + '<img src="img/parfum-icon.png" alt="" class="chatbot-header__img" onerror="this.style.display=\'none\'" />'
+    + '<div><strong>Conseiller La Cave</strong><span class="chatbot-header__status">&#9679; En ligne</span></div>'
     + '</div>'
     + '<button class="chatbot-close" onclick="toggleChatbot()" aria-label="Fermer">&#10005;</button>'
     + '</div>'
@@ -143,7 +137,7 @@ function buildChatbotHTML() {
     + '</div>';
 }
 
-// ── Etat ─────────────────────────────────────────────────────
+// ── État ─────────────────────────────────────────────────────
 var chatState = { open: false, stepIndex: 0, prefs: {}, started: false };
 
 function toggleChatbot() {
@@ -177,7 +171,7 @@ function addBotMessage(text) {
   if (!msgs) return;
   var div = document.createElement("div");
   div.className = "chatbot-msg chatbot-msg--bot";
-  div.innerHTML = '<img src="img/parfum-icon.png" alt="" class="chatbot-msg__avatar" /><div class="chatbot-msg__bubble">' + text + '</div>';
+  div.innerHTML = '<div class="chatbot-msg__bubble">' + text + '</div>';
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
 }
@@ -197,7 +191,7 @@ function showOptions(options) {
   if (!container) return;
   var html = "";
   for (var i = 0; i < options.length; i++) {
-    var lbl = options[i].label.replace(/'/g, "\\'");
+    var lbl = options[i].label.replace(/'/g, "&#39;");
     html += '<button class="chatbot-opt" onclick="selectOption(\'' + options[i].value + '\',\'' + lbl + '\')">' + options[i].label + '</button>';
   }
   container.innerHTML = html;
@@ -209,128 +203,67 @@ function selectOption(value, label) {
   var step = CHATBOT_STEPS[chatState.stepIndex];
   if (step.key) chatState.prefs[step.key] = value;
 
-  if (value === "start") {
-    setTimeout(function() { showStep(1); }, 500);
-    return;
-  }
   if (step.next === "result") {
     setTimeout(function() { showResults(); }, 800);
   } else {
-    var nextIndex = -1;
-    for (var i = 0; i < CHATBOT_STEPS.length; i++) {
-      if (CHATBOT_STEPS[i].id === step.next) { nextIndex = i; break; }
-    }
+    var nextIndex = CHATBOT_STEPS.findIndex(function(s) { return s.id === step.next; });
     if (nextIndex !== -1) setTimeout(function() { showStep(nextIndex); }, 500);
   }
 }
 
 function showResults() {
   var msgs = document.getElementById("chatbot-messages");
-  
-  // Algorithme de matching
-  var results = [];
-  for (var i = 0; i < PRODUCTS.length; i++) {
-    var p = PRODUCTS[i];
-    var score = 0;
-    var desc = (p.description + " " + (p.notes ? JSON.stringify(p.notes) : "")).toLowerCase();
-    var genre = p.genre ? p.genre.toLowerCase() : "";
 
-    // GENRE
-    if (chatState.prefs.genre === "femme") {
-      if (genre.indexOf("femme") !== -1) score += 3;
-    } else if (chatState.prefs.genre === "homme") {
-      if (genre.indexOf("homme") !== -1) score += 3;
-    } else {
-      score += 2;
-    }
-
-    // FAMILLE
-    if (chatState.prefs.famille === "floral") {
-      if (desc.indexOf("floral") !== -1 || desc.indexOf("rose") !== -1 || desc.indexOf("jasmin") !== -1 || desc.indexOf("fleur") !== -1 || desc.indexOf("pivoine") !== -1 || desc.indexOf("hibiscus") !== -1) score += 4;
-      else score += 1;
-    } else if (chatState.prefs.famille === "oriental") {
-      if (desc.indexOf("oriental") !== -1 || desc.indexOf("oud") !== -1 || desc.indexOf("ambre") !== -1 || desc.indexOf("tabac") !== -1 || desc.indexOf("vanille") !== -1 || desc.indexOf("miel") !== -1 || desc.indexOf("praline") !== -1) score += 4;
-      else score += 1;
-    } else if (chatState.prefs.famille === "frais") {
-      if (desc.indexOf("frais") !== -1 || desc.indexOf("agrume") !== -1 || desc.indexOf("bergamote") !== -1 || desc.indexOf("cedrat") !== -1 || desc.indexOf("the") !== -1) score += 4;
-      else score += 1;
-    } else if (chatState.prefs.famille === "gourmand") {
-      if (desc.indexOf("gourmand") !== -1 || desc.indexOf("miel") !== -1 || desc.indexOf("vanille") !== -1 || desc.indexOf("praline") !== -1 || desc.indexOf("poire") !== -1 || desc.indexOf("sucr") !== -1) score += 4;
-      else score += 1;
-    }
-
-    // OCCASION
-    if (chatState.prefs.occasion === "soiree") {
-      if (p.sillage === "Fort") score += 3; else score += 1;
-    } else if (chatState.prefs.occasion === "quotidien") {
-      if (p.sillage === "Modere") score += 3; else score += 1;
-    } else {
-      score += 1;
-    }
-
-    // BUDGET
-    if (chatState.prefs.budget === "petit") {
-      if (p.prix > 0 && p.prix <= 10000) score += 5;
-      else if (p.prix > 10000) score -= 1;
-    } else if (chatState.prefs.budget === "moyen") {
-      if (p.prix > 10000 && p.prix <= 50000) score += 5;
-      else if (p.prix === 0) score += 3;
-      else score += 1;
-    } else if (chatState.prefs.budget === "grand") {
-      if (p.prix > 50000 || p.prix === 0) score += 5;
-      else score += 2;
-    }
-
-    if (p.bestSeller) score += 1;
-    if (p.categorie === "parfums") score += 1;
-
-    results.push({ produit: p, score: score });
-  }
-
+  // Scorer tous les produits
+  var results = PRODUCTS.map(function(p) {
+    return { produit: p, score: scoreProduct(p, chatState.prefs) };
+  });
   results.sort(function(a, b) { return b.score - a.score; });
-  var recs = results.slice(0, 2).map(function(r) { return r.produit; });
+  var recs = results.slice(0, 3).map(function(r) { return r.produit; });
 
-  addBotMessage("Voici les parfums faits pour vous !");
+  // Message contextuel selon catégorie
+  var catLabels = {
+    cat_parfums: "parfums", cat_diffuseurs: "diffuseurs",
+    cat_huiles: "huiles parfumées", cat_sprays: "sprays d'intérieur",
+    cat_voiture: "diffuseurs de voiture"
+  };
+  var catLabel = catLabels[chatState.prefs.categorie_souhaitee] || "produits";
+  addBotMessage("Voici mes meilleures recommandations en " + catLabel + " pour vous ✨");
 
-  for (var j = 0; j < recs.length; j++) {
-    (function(p, delay) {
-      setTimeout(function() {
-        var card = document.createElement("div");
-        card.className = "chatbot-product-card";
+  recs.forEach(function(p, j) {
+    setTimeout(function() {
+      var card = document.createElement("div");
+      card.className = "chatbot-product-card";
+      var imgHTML = (p.images && p.images[0])
+        ? '<img src="' + p.images[0] + '" alt="' + p.nom + '" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display=\'none\'" />'
+        : '<span style="font-size:2rem;display:flex;align-items:center;justify-content:center;height:100%;">' + (p.emoji || "🛍️") + '</span>';
+      var prixHTML = p.prix > 0 ? p.prix.toLocaleString() + ' ' + (p.devise || 'FCFA') : 'Prix sur demande';
 
-        var imgHTML = (p.images && p.images[0])
-          ? '<img src="' + p.images[0] + '" alt="' + p.nom + '" style="width:100%;height:100%;object-fit:cover;display:block;" />'
-          : '<span style="font-size:2rem;display:flex;align-items:center;justify-content:center;height:100%;">' + p.emoji + '</span>';
+      card.innerHTML =
+        '<a href="produit.html?id=' + p.id + '" class="chatbot-product-card__link">'
+        + '<div class="chatbot-product-card__media">' + imgHTML + '</div>'
+        + '<div class="chatbot-product-card__info">'
+        + '<p class="chatbot-product-card__cat">' + getCategorieLabel(p.categorie) + '</p>'
+        + '<strong class="chatbot-product-card__name">' + p.nom + '</strong>'
+        + '<p class="chatbot-product-card__marque">' + (p.marque || '') + '</p>'
+        + '<p class="chatbot-product-card__prix">' + prixHTML + '</p>'
+        + '</div></a>'
+        + '<div class="chatbot-product-card__footer">'
+        + '<button class="chatbot-btn chatbot-btn--panier" onclick="Panier&&Panier.ajouter(' + JSON.stringify({id:p.id,nom:p.nom,marque:p.marque||"",prix:p.prix,devise:p.devise||"FCFA",images:p.images,emoji:p.emoji||"🛍️"}).replace(/"/g,"'") + ')">🛍️ Panier</button>'
+        + '<a href="' + getWhatsAppLink(p) + '" class="chatbot-btn chatbot-btn--wa" target="_blank" rel="noopener">Commander</a>'
+        + '</div>';
 
-        var prixHTML = (p.prix > 0)
-          ? p.prix.toLocaleString() + ' ' + (p.devise || 'FCFA')
-          : 'Prix sur demande';
-
-        card.innerHTML =
-          '<a href="produit.html?id=' + p.id + '" class="chatbot-product-card__link">'
-          + '<div class="chatbot-product-card__media">' + imgHTML + '</div>'
-          + '<div class="chatbot-product-card__info">'
-          + '<p class="chatbot-product-card__cat">' + getCategorieLabel(p.categorie) + '</p>'
-          + '<strong class="chatbot-product-card__name">' + p.nom + '</strong>'
-          + '<p class="chatbot-product-card__marque">' + (p.marque || '') + '</p>'
-          + '<p class="chatbot-product-card__prix">' + prixHTML + '</p>'
-          + '</div></a>'
-          + '<div class="chatbot-product-card__footer">'
-          + '<a href="' + getWhatsAppLink(p) + '" class="chatbot-btn chatbot-btn--wa" target="_blank" rel="noopener">Commander</a>'
-          + '</div>';
-
-        msgs.appendChild(card);
-        msgs.scrollTop = msgs.scrollHeight;
-      }, delay);
-    })(recs[j], 400 + j * 600);
-  }
+      msgs.appendChild(card);
+      msgs.scrollTop = msgs.scrollHeight;
+    }, 400 + j * 500);
+  });
 
   setTimeout(function() {
-    addBotMessage("Cliquez sur un parfum pour voir tous les details !");
+    addBotMessage("Vous pouvez ajouter au panier ou commander directement sur WhatsApp 😊");
     document.getElementById("chatbot-options").innerHTML =
-      '<a href="https://wa.me/' + WHATSAPP_NUMBER + '?text=Bonjour%2C%20j%27ai%20besoin%20de%20conseils%20sur%20un%20parfum." class="chatbot-opt chatbot-opt--whatsapp" target="_blank" rel="noopener">Parler sur WhatsApp</a>'
-      + '<button class="chatbot-opt chatbot-opt--reset" onclick="resetChatbot()">Recommencer</button>';
-  }, 400 + recs.length * 600 + 500);
+      '<a href="https://wa.me/' + WHATSAPP_NUMBER + '?text=Bonjour%2C%20j%27ai%20besoin%20de%20conseils." class="chatbot-opt chatbot-opt--whatsapp" target="_blank" rel="noopener">💬 Parler sur WhatsApp</a>'
+      + '<button class="chatbot-opt" onclick="resetChatbot()">🔄 Recommencer</button>';
+  }, 400 + recs.length * 500 + 600);
 }
 
 function resetChatbot() {
@@ -347,7 +280,6 @@ document.addEventListener("DOMContentLoaded", function() {
   container.id = "chatbot-container";
   container.innerHTML = buildChatbotHTML();
   document.body.appendChild(container);
-
   setTimeout(function() {
     var notif = document.getElementById("chatbot-notif");
     if (notif && !chatState.open) notif.style.display = "flex";

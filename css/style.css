@@ -2363,3 +2363,319 @@ img.chatbot-msg__avatar {
   background: var(--color-beige) !important;
   padding: 8px !important;
 }
+
+/* ============================================================
+   FIX MOBILE — z-index nav overlay + images produit
+   ============================================================ */
+
+/* Fix: le nav mobile ne doit pas bloquer les clics en dessous */
+.nav:not(.nav--open) {
+  pointer-events: none;
+}
+@media (min-width: 1024px) {
+  .nav { pointer-events: all; }
+}
+
+/* Fix: image produit non coupée sur mobile */
+.product-gallery__main img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  max-height: 420px;
+}
+@media (max-width: 767px) {
+  .product-gallery__main {
+    aspect-ratio: 4 / 3;
+    max-height: 320px;
+  }
+  .product-gallery__main img {
+    object-fit: contain;
+  }
+}
+
+/* ============================================================
+   BOUTON PANIER HEADER
+   ============================================================ */
+.panier-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-blanc-pur);
+  transition: background-color var(--transition-base), color var(--transition-base);
+  flex-shrink: 0;
+}
+.panier-btn:hover { background-color: rgba(255,255,255,0.15); }
+.header--scrolled .panier-btn { color: var(--color-bordeaux); }
+.header--scrolled .panier-btn:hover { background-color: var(--color-beige); }
+
+.panier-count {
+  position: absolute;
+  top: 2px; right: 2px;
+  width: 18px; height: 18px;
+  background: var(--color-bordeaux);
+  color: var(--color-blanc-pur);
+  border-radius: 50%;
+  font-size: 0.65rem;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-blanc-pur);
+  line-height: 1;
+}
+.header--scrolled .panier-count { border-color: var(--color-blanc-pur); }
+
+/* ============================================================
+   PANNEAU PANIER (drawer latéral)
+   ============================================================ */
+.panier-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(44,26,30,0.5);
+  z-index: 400;
+  backdrop-filter: blur(2px);
+}
+.panier-overlay--visible { display: block; }
+
+.panier-panel {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: min(400px, 95vw);
+  background: var(--color-blanc-pur);
+  z-index: 401;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+  transform: translateX(100%);
+  transition: transform var(--transition-slow);
+}
+.panier-panel--open { transform: translateX(0); }
+
+.panier-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--color-beige-dark);
+  background: var(--color-beige);
+}
+.panier-header h3 {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  color: var(--color-text);
+  margin: 0;
+}
+.panier-close {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--color-blanc-pur);
+  border: 1.5px solid var(--color-beige-dark);
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--color-text-light);
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition-base), color var(--transition-base);
+}
+.panier-close:hover { background: var(--color-bordeaux); color: white; }
+
+.panier-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.panier-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: var(--space-4);
+  color: var(--color-text-muted);
+}
+.panier-empty span { font-size: 3rem; }
+.panier-empty p { font-size: var(--text-base); margin: 0; }
+
+.panier-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-beige);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-beige-dark);
+}
+.panier-item__img {
+  width: 64px; height: 64px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-rose-light);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.panier-item__img img { width: 100%; height: 100%; object-fit: cover; }
+.panier-item__emoji { font-size: 1.8rem; }
+.panier-item__info { flex: 1; min-width: 0; }
+.panier-item__nom {
+  font-family: var(--font-serif);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.panier-item__marque {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin: 0 0 4px;
+}
+.panier-item__prix {
+  font-family: var(--font-serif);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-bordeaux);
+  margin: 0;
+}
+.panier-item__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+.panier-qte-btn {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-beige-dark);
+  background: var(--color-blanc-pur);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-bordeaux);
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition-base);
+}
+.panier-qte-btn:hover { background: var(--color-bordeaux); color: white; }
+.panier-qte {
+  font-weight: 700;
+  font-size: var(--text-sm);
+  min-width: 20px;
+  text-align: center;
+  color: var(--color-text);
+}
+.panier-suppr {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid #fca5a5;
+  background: #fff5f5;
+  cursor: pointer;
+  font-size: 0.7rem;
+  color: #dc2626;
+  display: flex; align-items: center; justify-content: center;
+  margin-left: var(--space-1);
+  transition: background var(--transition-base);
+}
+.panier-suppr:hover { background: #dc2626; color: white; }
+
+.panier-footer {
+  padding: var(--space-5) var(--space-6);
+  border-top: 1px solid var(--color-beige-dark);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.panier-total {
+  font-size: var(--text-base);
+  color: var(--color-text);
+  margin: 0;
+  text-align: center;
+}
+.panier-total strong {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  color: var(--color-bordeaux);
+}
+.panier-commander {
+  width: 100%;
+  justify-content: center;
+  font-size: var(--text-sm);
+  padding: var(--space-4);
+}
+.panier-vider {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: underline;
+  padding: var(--space-1);
+}
+.panier-vider:hover { color: #dc2626; }
+
+/* ============================================================
+   TOAST NOTIFICATION
+   ============================================================ */
+.panier-toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--color-text);
+  color: var(--color-blanc-pur);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  max-width: 90vw;
+  text-align: center;
+}
+.panier-toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================================
+   BOUTON "AJOUTER AU PANIER" sur les cartes produit
+   ============================================================ */
+.btn--panier {
+  background-color: var(--color-bordeaux);
+  color: var(--color-blanc-pur);
+  border-color: var(--color-bordeaux);
+  font-size: var(--text-xs);
+  padding: var(--space-2) var(--space-3);
+}
+.btn--panier:hover {
+  background-color: var(--color-bordeaux-dark);
+  color: var(--color-blanc-pur);
+}
+
+/* Chatbot bouton panier */
+.chatbot-btn--panier {
+  background: var(--color-bordeaux);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-base);
+}
+.chatbot-btn--panier:hover { background: var(--color-bordeaux-dark); }
